@@ -43,13 +43,13 @@ exports.handler = async (event) => {
     const description = await describeJewelry('Ring', 'Gold');
     return {
       statusCode: 200,
-      body: JSON.stringify('Description generated'),
+      body: JSON.stringify({ description }), // Return the description as JSON
     };
   } catch (error) {
     // Handle errors and return an appropriate response
     return {
       statusCode: 500, // Internal Server Error
-      body: JSON.stringify('Error generating description'),
+      body: JSON.stringify({ error: 'Error generating description' }), // Return the error as JSON
     };
   }
 };

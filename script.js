@@ -1,21 +1,32 @@
-// JavaScript code in your frontend
-const descriptionContainer = document.getElementById('description-container');
+// script.js
 
-// Function to fetch the description from your server
-async function fetchDescription() {
-  try {
-    const response = await fetch('https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description'); // Update with the correct URL
-    if (response.ok) {
-      const data = await response.json();
-      const description = data.description;
-      descriptionContainer.textContent = description;
-    } else {
-      console.error('Failed to fetch description:', response.statusText);
-    }
-  } catch (error) {
-    console.error('Error:', error);
-  }
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const jewelryForm = document.getElementById('jewelryForm');
+    const descriptionElement = document.getElementById('description');
 
-// Call the function to fetch and display the description
-fetchDescription();
+    jewelryForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const jewelryType = document.getElementById('jewelryType').value;
+        const jewelryMaterial = document.getElementById('jewelryMaterial').value;
+
+        try {
+            const response = await fetch('https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ jewelryType, jewelryMaterial }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch description');
+            }
+
+            const data = await response.json();
+            descriptionElement.textContent = data.description;
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+});

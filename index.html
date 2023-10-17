@@ -1,27 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jewelry Description Generator</title>
-<style>
-  /* Add your CSS styling here */
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewelry Description</title>
 </head>
 <body>
+    <h1>Jewelry Description</h1>
 
-<form id="jewelry-form">
-  <label for="type">Type:</label>
-  <input type="text" id="type" name="type" required><br><br>
+    <!-- Form for input -->
+    <form id="jewelryForm">
+        <label for="jewelryType">Jewelry Type:</label>
+        <input type="text" id="jewelryType" name="jewelryType" required>
+        
+        <label for="jewelryMaterial">Material:</label>
+        <input type="text" id="jewelryMaterial" name="jewelryMaterial" required>
+        
+        <button type="submit">Generate Description</button>
+    </form>
 
-  <label for="material">Material:</label>
-  <input type="text" id="material" name="material" required><br><br>
+    <p id="description">Description will appear here.</p>
 
-  <!-- Add more fields as needed -->
+    <!-- Include the JavaScript file -->
+    <script src="script.js"></script>
 
-  <input type="submit" value="Generate Description">
-</form>
-<div id="description-container"></div>
-<script src="script.js"></script>
+    <!-- JavaScript to handle form submission -->
+    <script>
+        const jewelryForm = document.getElementById('jewelryForm');
+        const descriptionElement = document.getElementById('description');
+
+        jewelryForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const jewelryType = document.getElementById('jewelryType').value;
+            const jewelryMaterial = document.getElementById('jewelryMaterial').value;
+
+            try {
+                const response = await fetch('/.netlify/functions/describe-jewelry', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ jewelryType, jewelryMaterial }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch description');
+                }
+
+                const data = await response.json();
+                descriptionElement.textContent = data.description;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    </script>
 </body>
 </html>
