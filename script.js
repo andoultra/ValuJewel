@@ -7,10 +7,10 @@ jewelryForm.addEventListener('submit', async (event) => {
     const jewelryType = document.getElementById('jewelryType').value;
     const jewelryMaterial = document.getElementById('jewelryMaterial').value;
     const Cut = document.getElementById('Cut').value; // Capture Cut value
-const jewelryType = document.getElementById('jewelryType').value;
+const jewelryTypelog = document.getElementById('jewelryType').value;
 console.log('jewelryType:', jewelryType);
 
-const jewelryMaterial = document.getElementById('jewelryMaterial').value;
+const jewelryMateriallog = document.getElementById('jewelryMaterial').value;
 console.log('jewelryMaterial:', jewelryMaterial);
 
     try {
