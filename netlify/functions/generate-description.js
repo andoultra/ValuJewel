@@ -11,7 +11,6 @@ async function describeJewelry(type, material, cut) {
       {
         prompt: `Generate a technical description of a ${type} with the following attributes: Type: ${type}, Material: ${material},`, // Corrected the missing comma
         max_tokens: 150,
-        temperature: temperature || 0.2, // Use provided temperature or default to 0.2
       },
       {
         headers: {
