@@ -6,10 +6,14 @@ const maxExecutionTime = 8000; // Set a maximum execution time (in milliseconds)
 async function describeJewelry(type, material, cut) {
   try {
     const startTime = Date.now(); // Record the start time
+    const description = response.data.choices[0].text.trim();
+    console.log('Description from OpenAI API:', description); // Log the description to the console
+
     const response = await axios.post(
       'https://api.openai.com/v1/engines/davinci/completions', // Use the correct endpoint for chat models
       {
-        prompt: `Generate a technical description of a ${type} with the following attributes: Type: ${type}, Material: ${material},`, // Corrected the missing comma
+        prompt: prompt: `Generate a technical description of a ${type} jewelry piece made of ${material}. Include details such as design, size, and any unique features.`
+, // Corrected the missing comma
         max_tokens: 150,
       },
       {
