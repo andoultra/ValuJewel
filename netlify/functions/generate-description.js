@@ -5,7 +5,7 @@ const apiKey = process.env.OPENAI_API_KEY;
 async function describe_jewelry(type, material) {
   try {
     const response = await axios.post(
-      'https://api.openai.com/v1/engines/davinci-codex/completions',
+      'https://api.openai.com/v1/engines/gpt-3.5-turbo/completions',
       {
         prompt: `Describe a jewelry piece with the following attributes: Type: ${type}, Material: ${material}`,
         max_tokens: 150,
