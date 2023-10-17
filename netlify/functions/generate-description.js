@@ -1,7 +1,4 @@
-import OpenAI from "openai";
-const OpenAI = new OpenAI();
-
-// Ensure to replace 'your_api_key_here' with your actual API key
+const OpenAI = require('openai');
 const openai = new OpenAI(process.env.OPENAI_API_KEY);
 
 async function describe_jewelry(type, material) {
