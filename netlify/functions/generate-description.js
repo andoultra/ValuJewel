@@ -8,18 +8,19 @@ async function describeJewelry(type, material, cut) {
     const startTime = Date.now(); // Record the start time
 
     const response = await axios.post(
-      'https://api.openai.com/v1/engines/davinci/completions',
-      {
-        prompt: `Generate a technical description of a ${type} jewelry piece made of ${material}. Include details such as design, size, and any unique features.`,
-        max_tokens: 150,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
-        },
-      }
-    );
+  'https://api.openai.com/v1/engines/text-davinci-003/completions',
+  {
+    prompt: `Generate a technical description of a ${type} jewelry piece made of ${material}. Include details such as design, size, and any unique features.`,
+    max_tokens: 150,
+    temperature: 0.7, // Experiment with temperature
+  },
+  {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`,
+    },
+  }
+);
 
     const description = response.data.choices[0].text.trim();
     console.log('Description from OpenAI API:', description); // Log the description to the console
