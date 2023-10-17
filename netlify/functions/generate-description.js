@@ -4,7 +4,7 @@ exports.handler = async function(event, context) {
   const jewelryData = JSON.parse(event.body);
 
   try {
-    const response = await axios.post('https://api.openai.com/v1/engines/davinci/completions', {
+    const response = await axios.post('https://api.openai.com/v1/engines/gpt-3.5-turbo/completions', {
       prompt: `Describe a jewelry piece with the following attributes: Type: ${jewelryData.type}, Material: ${jewelryData.material}`,
       max_tokens: 150
     }, {
