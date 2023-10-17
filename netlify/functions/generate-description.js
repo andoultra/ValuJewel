@@ -9,7 +9,7 @@ async function describeJewelry(type, material) {
     const response = await axios.post(
       'https://api.openai.com/v1/engines/davinci/completions', // Use the correct endpoint for chat models
       {
-        prompt: `Describe a jewelry piece with the following attributes: Type: ${type}, Material: ${material}`,
+        prompt: `generate a technical description of a ${type} with the following attributes: Type: ${type}, Material: ${material}`,
         max_tokens: 150,
       },
       {
