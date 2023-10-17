@@ -5,9 +5,18 @@ const apiKey = process.env.OPENAI_API_KEY;
 async function describe_jewelry(type, material) {
   try {
     const response = await axios.post(
-      'https://api.openai.com/v1/engines/gpt-3.5-turbo/completions',
+      'https://api.openai.com/v1/chat/completions', // Use the correct endpoint for chat completions
       {
-        prompt: `Describe a jewelry piece with the following attributes: Type: ${type}, Material: ${material}`,
+        messages: [
+          {
+            role: 'system',
+            content: 'You are a helpful assistant.',
+          },
+          {
+            role: 'user',
+            content: `Describe a jewelry piece with the following attributes: Type: ${type}, Material: ${material}`,
+          },
+        ],
         max_tokens: 150,
       },
       {
@@ -18,15 +27,12 @@ async function describe_jewelry(type, material) {
       }
     );
 
-    const description = response.data.choices[0].text.trim();
+    const description = response.data.choices[0].message.content.trim();
     console.log(description);
   } catch (error) {
     console.error('Error:', error.response ? error.response.data : error.message);
   }
 }
-
-describe_jewelry('Ring', 'Gold');
-
 
 exports.handler = async (event) => {
   await describe_jewelry('Ring', 'Gold');
