@@ -6,14 +6,10 @@ const openai = new OpenAI(process.env.OPENAI_API_KEY);
 async function describe_jewelry(type, material) {
   try {
     const completion = await openai.completions.create({
-      model: 'gpt-3.5-turbo',
-      messages: [{
-        role: 'system',
-        content: 'You are a helpful assistant.'
-      }, {
-        role: 'user',
-        content: `Describe a jewelry piece with the following attributes: Type: ${type}, Material: ${material}`
-      }]
+      messages: [
+        { role: 'user', content: `Describe a jewelry piece with the following attributes: Type: ${type}, Material: ${material}` }
+      ],
+      model: 'gpt-3.5-turbo'
     });
     
     const description = completion.data.choices[0].message.content.trim();
@@ -24,9 +20,9 @@ async function describe_jewelry(type, material) {
 }
 
 exports.handler = async (event) => {
-    await describe_jewelry('Ring', 'Gold');
-    return {
-        statusCode: 200,
-        body: JSON.stringify('Description generated'),
-    };
+  await describe_jewelry('Ring', 'Gold');
+  return {
+    statusCode: 200,
+    body: JSON.stringify('Description generated'),
+  };
 };
