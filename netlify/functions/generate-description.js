@@ -3,13 +3,13 @@ const axios = require('axios');
 const apiKey = process.env.OPENAI_API_KEY;
 const maxExecutionTime = 8000; // Set a maximum execution time (in milliseconds)
 
-async function describeJewelry(type, material, temperature) {
+async function describeJewelry(type, material, cut) {
   try {
     const startTime = Date.now(); // Record the start time
     const response = await axios.post(
       'https://api.openai.com/v1/engines/davinci/completions', // Use the correct endpoint for chat models
       {
-        prompt: `Generate a technical description of a ${type} with the following attributes: Type: ${type}, Material: ${material} ${Cut}`
+        prompt: `Generate a technical description of a ${type} with the following attributes: Type: ${type}, Material: ${material}, Cut: ${Cut}`, // Corrected the missing comma
         max_tokens: 150,
         temperature: temperature || 0.2, // Use provided temperature or default to 0.2
       },
@@ -42,11 +42,11 @@ async function describeJewelry(type, material, temperature) {
 exports.handler = async (event) => {
   try {
     const { type, material, temperature } = event.queryStringParameters || {}; // Get type, material, and temperature from query parameters
-    const description = await describeJewelry(type, material);
+    const description = await describeJewelry(type, material, temperature);
 
     // Configure CORS headers
     const headers = {
-      'Access-Control-Allow-Origin': 'andoultra.github.io', // Replace with your domain
+      'Access-Control-Allow-Origin': 'https://andoultra.github.io', // Replace with your domain
       'Access-Control-Allow-Headers': 'Content-Type',
     };
 
@@ -61,7 +61,7 @@ exports.handler = async (event) => {
     return {
       statusCode: 500,
       headers: {
-        'Access-Control-Allow-Origin': 'andoultra.github.io', // Replace with your domain
+        'Access-Control-Allow-Origin': 'https://andoultra.github.io', // Replace with your domain
         'Access-Control-Allow-Headers': 'Content-Type',
       },
       body: JSON.stringify({ error: 'Error generating description' }),
