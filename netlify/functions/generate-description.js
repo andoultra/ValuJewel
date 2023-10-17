@@ -18,6 +18,7 @@ async function describe_jewelry(type, material) {
           },
         ],
         max_tokens: 150,
+        model: 'gpt-3.5-turbo', // Specify the model
       },
       {
         headers: {
