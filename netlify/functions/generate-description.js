@@ -50,7 +50,7 @@ exports.handler = async (event) => {
 
     // Configure CORS headers
     const headers = {
-      'Access-Control-Allow-Origin': 'https://andoultra.github.io', // Replace with your domain
+      'Access-Control-Allow-Origin': 'https://andoultra.github.io/ValuJewel/', // Replace with your domain
       'Access-Control-Allow-Headers': 'Content-Type',
     };
 
