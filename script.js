@@ -4,7 +4,7 @@ const descriptionContainer = document.getElementById('description-container');
 // Function to fetch the description from your server
 async function fetchDescription() {
   try {
-    const response = await fetch('/https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description'); // Update with the correct URL
+    const response = await fetch('https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description'); // Update with the correct URL
     if (response.ok) {
       const data = await response.json();
       const description = data.description;

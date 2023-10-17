@@ -22,26 +22,6 @@
   <input type="submit" value="Generate Description">
 </form>
 <div id="description-container"></div>
-<script>
-  document.getElementById('jewelry-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    var type = document.getElementById('type').value;
-    var material = document.getElementById('material').value;
-    
-    fetch('/.netlify/functions/generate-description', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ type: type, material: material })
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Description:', data.description);
-    });
-  });
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
