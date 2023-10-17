@@ -9,7 +9,7 @@ async function describeJewelry(type, material, temperature) {
     const response = await axios.post(
       'https://api.openai.com/v1/engines/davinci/completions', // Use the correct endpoint for chat models
       {
-        prompt: `Generate a technical description of a ${type} with the following attributes: Type: ${type}, Material: ${material}`${Cut},
+        prompt: `Generate a technical description of a ${type} with the following attributes: Type: ${type}, Material: ${material} ${Cut}`
         max_tokens: 150,
         temperature: temperature || 0.2, // Use provided temperature or default to 0.2
       },
