@@ -12,7 +12,7 @@ async function describeJewelry(type, material, cut) {
   {
     prompt: `Generate a technical description of a ${type} jewelry piece made of ${material}. Include details such as design, size, and any unique features.`,
     max_tokens: 150,
-    temperature: 0.7, // Experiment with temperature
+    temperature: 0.2, // Experiment with temperature
   },
   {
     headers: {
