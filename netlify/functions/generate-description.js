@@ -41,7 +41,13 @@ exports.handler = async (event) => {
   try {
     const { type, material, temperature } = event.queryStringParameters; // Get type, material, and temperature from query parameters
     const description = await describeJewelry(type, material, temperature);
-    
+
+    // Parse the JSON response from the API
+    const apiResponse = JSON.parse(description);
+
+    // Extract the generated text from the API response
+    const generatedText = apiResponse.choices[0].text.trim();
+
     // Configure CORS headers
     const headers = {
       'Access-Control-Allow-Origin': 'https://andoultra.github.io', // Replace with your domain
@@ -51,18 +57,19 @@ exports.handler = async (event) => {
     return {
       statusCode: 200,
       headers, // Include the CORS headers in the response
-      body: JSON.stringify({ description }),
+      body: JSON.stringify({ description: generatedText }), // Return the description as JSON
     };
   } catch (error) {
     // Handle errors and return an appropriate response
     return {
       statusCode: 500,
       headers: {
-        'Access-Control-Allow-Origin': 'https://andoultra.github.io/ValuJewel/', // Replace with your domain
+        'Access-Control-Allow-Origin': 'https://andoultra.github.io', // Replace with your domain
         'Access-Control-Allow-Headers': 'Content-Type',
       },
       body: JSON.stringify({ error: 'Error generating description' }),
     };
   }
 };
+
 
