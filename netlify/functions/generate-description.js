@@ -9,7 +9,7 @@ exports.handler = async function(event, context) {
       max_tokens: 150
     }, {
       headers: {
-        'Authorization': 'Bearer ${process.env.OPENAI_API_KEY}'
+        'Authorization': Bearer ${process.env.OPENAI_API_KEY}`
       }
     });
     return {
