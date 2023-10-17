@@ -6,7 +6,7 @@ const maxExecutionTime = 8000; // Set a maximum execution time (in milliseconds)
 async function describeJewelry(type, material, cut) {
   try {
     const startTime = Date.now(); // Record the start time
-
+console.log('Request Payload to OpenAI API:', requestData);
     const response = await axios.post(
   'https://api.openai.com/v1/engines/text-davinci-003/completions',
   {
