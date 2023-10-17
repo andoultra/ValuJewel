@@ -9,7 +9,7 @@ async function describeJewelry(type, material) {
     const response = await axios.post(
       'https://api.openai.com/v1/engines/davinci/completions', // Use the correct endpoint for chat models
       {
-        prompt: `generate a technical description of a ${type} with the following attributes: Type: ${type}, Material: ${material}`,
+        prompt: `Generate a technical description of a ${type} with the following attributes: Type: ${type}, Material: ${material}`,
         max_tokens: 150,
       },
       {
@@ -21,7 +21,6 @@ async function describeJewelry(type, material) {
     );
 
     const description = response.data.choices[0].text.trim();
-    console.log(description);
 
     // Calculate the time taken by the function
     const executionTime = Date.now() - startTime;
@@ -40,7 +39,8 @@ async function describeJewelry(type, material) {
 
 exports.handler = async (event) => {
   try {
-    const description = await describeJewelry('Ring', 'Gold');
+    const { type, material } = event.queryStringParameters; // Get type and material from query parameters
+    const description = await describeJewelry(type, material);
     return {
       statusCode: 200,
       body: JSON.stringify({ description }), // Return the description as JSON
