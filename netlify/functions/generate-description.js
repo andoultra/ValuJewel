@@ -1,24 +1,16 @@
 const axios = require('axios');
 
 const apiKey = process.env.OPENAI_API_KEY;
+const maxExecutionTime = 8000; // Set a maximum execution time (in milliseconds)
 
-async function describe_jewelry(type, material) {
+async function describeJewelry(type, material) {
   try {
+    const startTime = Date.now(); // Record the start time
     const response = await axios.post(
-      'https://api.openai.com/v1/chat/completions', // Use the correct endpoint for chat completions
+      'https://api.openai.com/v1/engines/davinci/completions', // Use the correct endpoint for chat models
       {
-        messages: [
-          {
-            role: 'system',
-            content: 'You are a helpful assistant.',
-          },
-          {
-            role: 'user',
-            content: `Describe a jewelry piece with the following attributes: Type: ${type}, Material: ${material}`,
-          },
-        ],
+        prompt: `Describe a jewelry piece with the following attributes: Type: ${type}, Material: ${material}`,
         max_tokens: 150,
-        model: 'gpt-3.5-turbo', // Specify the model
       },
       {
         headers: {
@@ -28,17 +20,36 @@ async function describe_jewelry(type, material) {
       }
     );
 
-    const description = response.data.choices[0].message.content.trim();
+    const description = response.data.choices[0].text.trim();
     console.log(description);
+
+    // Calculate the time taken by the function
+    const executionTime = Date.now() - startTime;
+
+    // Check if execution time is approaching the Lambda timeout
+    if (executionTime >= maxExecutionTime) {
+      console.warn('Function execution approaching Lambda timeout.');
+    }
+
+    return description;
   } catch (error) {
     console.error('Error:', error.response ? error.response.data : error.message);
+    throw error; // Re-throw the error for Lambda error handling
   }
 }
 
 exports.handler = async (event) => {
-  await describe_jewelry('Ring', 'Gold');
-  return {
-    statusCode: 200,
-    body: JSON.stringify('Description generated'),
-  };
+  try {
+    const description = await describeJewelry('Ring', 'Gold');
+    return {
+      statusCode: 200,
+      body: JSON.stringify('Description generated'),
+    };
+  } catch (error) {
+    // Handle errors and return an appropriate response
+    return {
+      statusCode: 500, // Internal Server Error
+      body: JSON.stringify('Error generating description'),
+    };
+  }
 };
