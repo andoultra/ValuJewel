@@ -7,6 +7,11 @@ jewelryForm.addEventListener('submit', async (event) => {
     const jewelryType = document.getElementById('jewelryType').value;
     const jewelryMaterial = document.getElementById('jewelryMaterial').value;
     const Cut = document.getElementById('Cut').value; // Capture Cut value
+const jewelryType = document.getElementById('jewelryType').value;
+console.log('jewelryType:', jewelryType);
+
+const jewelryMaterial = document.getElementById('jewelryMaterial').value;
+console.log('jewelryMaterial:', jewelryMaterial);
 
     try {
         const response = await fetch('https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description', {
