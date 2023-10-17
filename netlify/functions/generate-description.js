@@ -9,7 +9,7 @@ async function describeJewelry(type, material, cut) {
     const response = await axios.post(
       'https://api.openai.com/v1/engines/davinci/completions', // Use the correct endpoint for chat models
       {
-        prompt: `Generate a technical description of a ${type} with the following attributes: Type: ${type}, Material: ${material}, Cut: ${Cut}`, // Corrected the missing comma
+        prompt: `Generate a technical description of a ${type} with the following attributes: Type: ${type}, Material: ${material},`, // Corrected the missing comma
         max_tokens: 150,
         temperature: temperature || 0.2, // Use provided temperature or default to 0.2
       },
@@ -41,8 +41,8 @@ async function describeJewelry(type, material, cut) {
 
 exports.handler = async (event) => {
   try {
-    const { type, material, temperature } = event.queryStringParameters || {}; // Get type, material, and temperature from query parameters
-    const description = await describeJewelry(type, material, temperature);
+    const { type, material, Cut } = event.queryStringParameters || {}; // Get type, material, and temperature from query parameters
+    const description = await describeJewelry(type, material, Cut);
 
     // Configure CORS headers
     const headers = {
