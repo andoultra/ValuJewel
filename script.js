@@ -9,7 +9,7 @@ jewelryForm.addEventListener('submit', async (event) => {
     const Cut = document.getElementById('Cut').value; // Capture Cut value
 
     try {
-        const response = await fetch('/.netlify/functions/generate-description', {
+        const response = await fetch('https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
