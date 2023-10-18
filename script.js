@@ -5,9 +5,9 @@ jewelryForm.addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const jewelryType = document.getElementById('jewelryType').value;
-      console.log('jewelryType:', jewelryType);
+
     const jewelryMaterial = document.getElementById('jewelryMaterial').value;
-      console.log('jewelryMaterial:', jewelryMaterial);
+
     const Cut = document.getElementById('Cut').value; // Capture Cut value
 
     try {
