@@ -40,8 +40,11 @@ fetchGemDataButton.addEventListener('click', async () => {
         const response = await fetch(`https://willowy-pie-2fe033.netlify.app/.netlify/functions/fetchGemData?reportNumber=${certificationNumber}`);
 
         if (!response.ok) {
-            throw new Error('Failed to fetch gem data.');
-        }
+    const responseBody = await response.text();
+    console.error('Server responded with:', responseBody);
+    throw new Error('Failed to fetch gem data.');
+      }
+
 
         const data = await response.json();
         gemDataElement.textContent = JSON.stringify(data.data, null, 2);
