@@ -47,4 +47,19 @@ exports.handler = async (event) => {
             body: JSON.stringify({ error: 'Failed to retrieve data' }),
         };
     }
+console.log('Navigating to GIA website...');
+await page.goto('https://www.gia.edu/report-check-landing');
+
+console.log('Typing report number...');
+await page.type('#reportno', reportNumber);
+
+console.log('Clicking the lookup button...');
+await page.click('.btn.search-btn[data-uw-rm-form="submit"]');
+
+console.log('Waiting for data to load...');
+await page.waitForTimeout(3000);
+
+console.log('Trying to extract data...');
+const reportData = await page.$eval('#SHAPE', el => el.textContent);
+console.log('Data extracted:', reportData);
 };
