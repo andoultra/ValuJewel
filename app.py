@@ -4,6 +4,11 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+# Disable favicon requests
+@app.route('/favicon.ico')
+def favicon():
+    return ('', 204)
+
 @app.route('/api/gem_scrape', methods=['POST'])
 def scrape_gem_info():
     try:
