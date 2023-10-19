@@ -1,51 +1,41 @@
-const axios = require('axios');
-const cheerio = require('cheerio');
-
-async function fetchGemData(certificationNumber) {
-    // Define the GIA URL structure (this is a placeholder, adjust as needed)
-    const url = `https://gia.example.com/certificates/${certificationNumber}`;
-
-    try {
-        const response = await axios.get(url);
-        const html = response.data;
-        
-        const $ = cheerio.load(html);
-        
-        // Extract data using cheerio selectors. Adjust these based on actual website structure!
-        const gemData = {
-            color: $('#colorSelector').text().trim(),
-            clarity: $('#claritySelector').text().trim(),
-            // ... add other selectors as needed
-        };
-
-        return gemData;
-    } catch (error) {
-        console.error(`Error fetching data for GIA number ${certificationNumber}:`, error);
-        throw error;
-    }
-}
+const puppeteer = require('puppeteer');
 
 exports.handler = async (event) => {
+    const reportNumber = event.queryStringParameters.reportNumber;
+
+    if (!reportNumber) {
+        return {
+            statusCode: 400,
+            body: JSON.stringify({ error: 'Report number is required' }),
+        };
+    }
+
     try {
-        const certificationNumber = event.queryStringParameters.certificationNumber;
-        
-        if (!certificationNumber) {
-            return {
-                statusCode: 400,
-                body: JSON.stringify({ error: "Certification number is required." })
-            };
-        }
-        
-        const gemData = await fetchGemData(certificationNumber);
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+
+        await page.goto('https://www.gia.edu/report-check-landing');
+
+        await page.type('#reportno', reportNumber);
+
+        await page.click('.btn.search-btn[data-uw-rm-form="submit"]');
+
+        await page.waitForTimeout(3000);  // wait for 3 seconds for data to load
+
+        // Replace '#YOUR_DATA_ELEMENT_ID' with the selector that targets the element containing the desired data
+        const reportData = await page.$eval('SHAPE', el => el.textContent);
+
+        await browser.close();
 
         return {
             statusCode: 200,
-            body: JSON.stringify(gemData)
+            body: JSON.stringify({ data: reportData }),
         };
+
     } catch (error) {
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: 'Failed to fetch gem data.' })
+            body: JSON.stringify({ error: 'Failed to retrieve data' }),
         };
     }
 };

@@ -37,16 +37,17 @@ fetchGemDataButton.addEventListener('click', async () => {
     }
 
     try {
-        const response = await fetch(`https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description=${certificationNumber}`);
+        const response = await fetch(`https://willowy-pie-2fe033.netlify.app/.netlify/functions/fetchGemData?reportNumber=${certificationNumber}`);
 
         if (!response.ok) {
             throw new Error('Failed to fetch gem data.');
         }
 
         const data = await response.json();
-        gemDataElement.textContent = JSON.stringify(data.gemData, null, 2);
+        gemDataElement.textContent = JSON.stringify(data.data, null, 2);
     } catch (error) {
         console.error('Error:', error);
         gemDataElement.textContent = 'Failed to fetch gem data. Please try again later.';
     }
 });
+
