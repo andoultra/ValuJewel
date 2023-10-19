@@ -38,4 +38,11 @@ exports.handler = async (event) => {
             body: JSON.stringify({ error: 'Failed to retrieve data' }),
         };
     }
-};
+return {
+    statusCode: 200,
+    headers: {
+        'Access-Control-Allow-Origin': 'https://andoultra.github.io',
+        'Access-Control-Allow-Headers': 'Content-Type'
+    },
+    body: JSON.stringify({ data: reportData }),
+};};
