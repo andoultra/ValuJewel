@@ -63,6 +63,8 @@ exports.handler = async (event) => {
             }
         );
 
+        console.log('Response from Browserless:', response.status, response.data); // Debug statement
+
         if (response.status === 200) {
             const reportData = response.data;
 
@@ -78,6 +80,7 @@ exports.handler = async (event) => {
             throw new Error('Failed to retrieve data from Browserless');
         }
     } catch (error) {
+        console.error('Error:', error);
         return {
             statusCode: 500,
             body: JSON.stringify({ error: 'Failed to retrieve data: ' + error.message }),
