@@ -44,8 +44,8 @@ exports.handler = async (event) => {
                 'Access-Control-Allow-Origin': 'https://andoultra.github.io',
                 'Access-Control-Allow-Headers': 'Content-Type'
             },
-            body: JSON.stringify({ error: 'Failed to retrieve data' }),
-        };
+            body: JSON.stringify({ error: `Failed to retrieve data: ${error.message}` }) };
+            
     }
 
 console.log('Navigating to GIA website...');
@@ -58,7 +58,7 @@ console.log('Clicking the lookup button...');
 await page.click('.btn.search-btn[data-uw-rm-form="submit"]');
 
 console.log('Waiting for data to load...');
-await page.waitForTimeout(3000);
+await page.waitForTimeout(10000);
 
 console.log('Trying to extract data...');
 const reportData = await page.$eval('#SHAPE', el => el.textContent);
