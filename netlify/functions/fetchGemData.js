@@ -3,9 +3,16 @@ const puppeteer = require('puppeteer');
 exports.handler = async (event) => {
     const reportNumber = event.queryStringParameters.reportNumber;
 
+    // Common CORS headers
+    const corsHeaders = {
+        'Access-Control-Allow-Origin': 'https://andoultra.github.io',
+        'Access-Control-Allow-Headers': 'Content-Type'
+    };
+
     if (!reportNumber) {
         return {
             statusCode: 400,
+            headers: corsHeaders,
             body: JSON.stringify({ error: 'Report number is required' }),
         };
     }
@@ -29,20 +36,15 @@ exports.handler = async (event) => {
 
         return {
             statusCode: 200,
+            headers: corsHeaders,
             body: JSON.stringify({ data: reportData }),
         };
 
     } catch (error) {
         return {
             statusCode: 500,
+            headers: corsHeaders,
             body: JSON.stringify({ error: 'Failed to retrieve data' }),
         };
     }
-return {
-    statusCode: 200,
-    headers: {
-        'Access-Control-Allow-Origin': 'https://andoultra.github.io',
-        'Access-Control-Allow-Headers': 'Content-Type'
-    },
-    body: JSON.stringify({ data: reportData }),
-};};
+};
