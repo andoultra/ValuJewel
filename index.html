@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jewelry Description</title>
-<style>
+    <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -66,28 +67,40 @@
             font-size: 16px;
         }
     </style>
-  </head>
+</head>
+
 <body>
-    <h1>Jewelry Description</h1>
+    <header>
+        <h1>Jewelry Description</h1>
+    </header>
 
-    <!-- Form for input -->
-    <form id="jewelryForm">
-    <label for="jewelryType">Jewelry Type:</label>
-    <input type="text" id="jewelryType" name="jewelryType" required>
-    
-    <label for="jewelryMaterial">Material:</label>
-    <input type="text" id="jewelryMaterial" name="jewelryMaterial" required>
+    <main>
+        <!-- Form for input -->
+        <form id="jewelryForm">
+            <label for="jewelryType">Jewelry Type:</label>
+            <input type="text" id="jewelryType" name="jewelryType" required>
 
-    <label for="Cut">Cut:</label>
-    <input type="text" id="Cut" name="Cut" required>
-    
-    <button type="submit">Generate Description</button>
-</form>
+            <label for="jewelryMaterial">Material:</label>
+            <input type="text" id="jewelryMaterial" name="jewelryMaterial" required>
 
+            <label for="Cut">Cut:</label>
+            <input type="text" id="Cut" name="Cut" required>
 
-    <p id="description">Description will appear here.</p>
+            <!-- Additional Fields -->
+            <label for="ringSize" id="ringSizeLabel" style="display:none;">Ring Size:</label>
+            <input type="text" id="ringSize" name="ringSize" style="display:none;">
+
+            <label for="necklaceLength" id="necklaceLengthLabel" style="display:none;">Necklace Length:</label>
+            <input type="text" id="necklaceLength" name="necklaceLength" style="display:none;">
+
+            <button type="submit">Generate Description</button>
+        </form>
+
+        <p id="description">Description will appear here.</p>
+    </main>
 
     <!-- Include the JavaScript file -->
     <script src="script.js"></script>
 </body>
+
 </html>
