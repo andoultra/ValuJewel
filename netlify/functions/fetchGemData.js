@@ -1,9 +1,12 @@
 const axios = require('axios');
+const axiosRetry = require('axios-retry');
+
+axiosRetry(axios, { retries: 3 }); // Retry the request up to 3 times on failure
 
 exports.handler = async (event) => {
-    const reportNumber = event.queryStringParameters.reportNumber;
+    const giaCertification = event.queryStringParameters.giaCertification;
 
-    if (!reportNumber) {
+    if (!giaCertification) {
         return {
             statusCode: 400,
             body: JSON.stringify({ error: 'Report number is required' }),
@@ -15,7 +18,7 @@ exports.handler = async (event) => {
     }
 
     try {
-        // Retrieve your Browserless API key from environment variables
+        // Retrieve your Browserless API key from the environment variable
         const apiKey = process.env.Browserless_Api_Key;
 
         // Construct the Browserless API URL for interaction
@@ -27,14 +30,30 @@ exports.handler = async (event) => {
             {
                 args: ['--no-sandbox'],
                 code: `
-                    // Your Puppeteer code here
-                    const reportNumber = "${reportNumber}";
-                    await page.goto('https://www.gia.edu/report-check-landing');
-                    await page.type('#reportno', reportNumber);
-                    await page.click('.btn.search-btn[data-uw-rm-form="submit"]');
-                    await page.waitForTimeout(5000);
-                    const reportData = await page.$eval('#SHAPE', el => el.textContent);
-                    return reportData;
+                    const giaCertification = "${giaCertification}";
+                    const puppeteer = require('puppeteer-core');  // Import puppeteer-core
+                    const chromium = require('chrome-aws-lambda');
+
+                    (async () => {
+                        const executablePath = await chromium.executablePath; 
+                        const browser = await puppeteer.launch({
+                            args: chromium.args,
+                            defaultViewport: chromium.defaultViewport,
+                            executablePath: executablePath,
+                            headless: chromium.headless,
+                        });
+                        const page = await browser.newPage();
+
+                        await page.goto('https://www.gia.edu/report-check-landing');
+                        await page.type('#reportno', giaCertification);
+                        await page.click('.btn.search-btn[data-uw-rm-form="submit"]');
+                        await page.waitForTimeout(5000);
+                        const reportData = await page.$eval('#SHAPE', el => el.textContent);
+
+                        await browser.close();
+                        
+                        return reportData;
+                    })();
                 `,
             },
             {
