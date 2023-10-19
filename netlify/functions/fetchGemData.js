@@ -1,5 +1,4 @@
-const chromium = require('chrome-aws-lambda');
-const puppeteer = require('puppeteer-core');  // Import puppeteer-core
+const axios = require('axios');
 
 exports.handler = async (event) => {
     const reportNumber = event.queryStringParameters.reportNumber;
@@ -10,63 +9,62 @@ exports.handler = async (event) => {
             body: JSON.stringify({ error: 'Report number is required' }),
             headers: {
                 'Access-Control-Allow-Origin': 'https://andoultra.github.io',
-                'Access-Control-Allow-Headers': 'Content-Type'
+                'Access-Control-Allow-Headers': 'Content-Type',
             },
         };
     }
 
-    let browser;
-
     try {
-        const executablePath = await chromium.executablePath;  // This is where we get the path to Chromium
+        // Retrieve your Browserless API key from environment variables
+        const apiKey = process.env.Browserless_Api_Key;
 
-        console.log('Launching browser...');
-        browser = await puppeteer.launch({
-            args: chromium.args,
-            defaultViewport: chromium.defaultViewport,
-            executablePath: executablePath,  // Use the Chromium path here
-            headless: chromium.headless,
-        });
+        // Construct the Browserless API URL for interaction
+        const apiUrl = `https://chrome.browserless.io/interact?url=https://www.gia.edu/report-check-landing`;
 
-        const page = await browser.newPage();
-
-        console.log('Navigating to GIA website...');
-        await page.goto('https://www.gia.edu/report-check-landing');
-
-        console.log('Typing report number...');
-        await page.type('#reportno', reportNumber);
-
-        console.log('Clicking the lookup button...');
-        await page.click('.btn.search-btn[data-uw-rm-form="submit"]');
-
-        console.log('Waiting for data to load...');
-        await page.waitForTimeout(5000);
-
-        console.log('Trying to extract data...');
-        const reportData = await page.$eval('#SHAPE', el => el.textContent);
-        console.log('Data extracted:', reportData);
-
-        await browser.close();
-
-        return {
-            statusCode: 200,
-            body: JSON.stringify({ data: reportData }),
-            headers: {
-                'Access-Control-Allow-Origin': 'https://andoultra.github.io',
-                'Access-Control-Allow-Headers': 'Content-Type'
+        console.log('Making a request to Browserless...');
+        const response = await axios.post(
+            apiUrl,
+            {
+                args: ['--no-sandbox'],
+                code: `
+                    // Your Puppeteer code here
+                    const reportNumber = "${reportNumber}";
+                    await page.goto('https://www.gia.edu/report-check-landing');
+                    await page.type('#reportno', reportNumber);
+                    await page.click('.btn.search-btn[data-uw-rm-form="submit"]');
+                    await page.waitForTimeout(5000);
+                    const reportData = await page.$eval('#SHAPE', el => el.textContent);
+                    return reportData;
+                `,
             },
-        };
+            {
+                headers: {
+                    Authorization: `Bearer ${apiKey}`,
+                },
+            }
+        );
 
-    } catch (error) {
-        if (browser) {
-            browser.close();
+        if (response.status === 200) {
+            const reportData = response.data;
+
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ data: reportData }),
+                headers: {
+                    'Access-Control-Allow-Origin': 'https://andoultra.github.io',
+                    'Access-Control-Allow-Headers': 'Content-Type',
+                },
+            };
+        } else {
+            throw new Error('Failed to retrieve data from Browserless');
         }
+    } catch (error) {
         return {
             statusCode: 500,
             body: JSON.stringify({ error: 'Failed to retrieve data: ' + error.message }),
             headers: {
                 'Access-Control-Allow-Origin': 'https://andoultra.github.io',
-                'Access-Control-Allow-Headers': 'Content-Type'
+                'Access-Control-Allow-Headers': 'Content-Type',
             },
         };
     }
