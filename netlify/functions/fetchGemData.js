@@ -17,6 +17,8 @@ exports.handler = async (event) => {
     let browser;
 
     try {
+        console.log('Chromium path:', await chromium.executablePath);  // Log the path here
+
         console.log('Launching browser...');
         browser = await chromium.puppeteer.launch({
             args: chromium.args,
