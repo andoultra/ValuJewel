@@ -37,7 +37,7 @@ fetchGemDataButton.addEventListener('click', async () => {
     }
 
     try {
-        const response = await fetch(`https://YOUR_NETLIFY_URL/.netlify/functions/fetchGemData?certificationNumber=${certificationNumber}`);
+        const response = await fetch(`https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description=${certificationNumber}`);
 
         if (!response.ok) {
             throw new Error('Failed to fetch gem data.');
