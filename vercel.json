@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/gem_scrape.py": {
-      "runtime": "python3.11.6"
+      "runtime": "now-php@1.0.0"
     }
   }
 }
