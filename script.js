@@ -37,7 +37,7 @@ fetchGemDataButton.addEventListener('click', async () => {
     }
 
     try {
-        const response = await fetch(`https://willowy-pie-2fe033.netlify.app/.netlify/functions/fetchGemData?reportNumber=${certificationNumber}`);
+        const response = await fetch(`https://willowy-pie-2fe033.netlify.app/.netlify/functions/fetchGemData?giaCertification=${certificationNumber}`);
 
         if (!response.ok) {
     const responseBody = await response.text();
