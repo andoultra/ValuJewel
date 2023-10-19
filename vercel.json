@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/gem_scrape.py": {
+      "runtime": "python3.11.6"
+    }
+  }
+}
