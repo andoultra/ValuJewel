@@ -24,3 +24,29 @@ jewelryForm.addEventListener('submit', async (event) => {
         descriptionElement.textContent = 'Error fetching description. Please try again.';
     }
 });
+const giaCertificationInput = document.getElementById('giaCertification');
+const fetchGemDataButton = document.getElementById('fetchGemDataButton');
+const gemDataElement = document.getElementById('gemData');
+
+fetchGemDataButton.addEventListener('click', async () => {
+    const certificationNumber = giaCertificationInput.value;
+
+    if (!certificationNumber) {
+        alert('Please enter a GIA certification number.');
+        return;
+    }
+
+    try {
+        const response = await fetch(`https://YOUR_NETLIFY_URL/.netlify/functions/fetchGemData?certificationNumber=${certificationNumber}`);
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch gem data.');
+        }
+
+        const data = await response.json();
+        gemDataElement.textContent = JSON.stringify(data.gemData, null, 2);
+    } catch (error) {
+        console.error('Error:', error);
+        gemDataElement.textContent = 'Failed to fetch gem data. Please try again later.';
+    }
+});

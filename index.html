@@ -98,13 +98,19 @@ p#description {
 
     <label for="Cut">Cut:</label>
     <input type="text" id="Cut" name="Cut" required>
-    
+    <label for="giaCertification">GIA Certification Number:</label>
+<input type="text" id="giaCertification" name="giaCertification">
+
+<button id="fetchGemDataButton">Fetch Gem Data</button>
+
+
     <button type="submit">Generate Description</button>
+
 </form>
 
 
     <p id="description">Description will appear here.</p>
-
+<div><p id="gemData">Gem data will appear here.</p></div>
     <!-- Include the JavaScript file -->
     <script src="script.js"></script>
 </body>
