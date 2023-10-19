@@ -1,52 +1,53 @@
-const puppeteer = require('puppeteer');
+const chrome = require('chrome-aws-lambda');
 
 exports.handler = async (event) => {
     const reportNumber = event.queryStringParameters.reportNumber;
 
-    // Common CORS headers
-    const corsHeaders = {
-        'Access-Control-Allow-Origin': 'https://andoultra.github.io',
-        'Access-Control-Allow-Headers': 'Content-Type'
-    };
-
     if (!reportNumber) {
         return {
             statusCode: 400,
-            headers: corsHeaders,
             body: JSON.stringify({ error: 'Report number is required' }),
         };
     }
 
+    let browser = null;
     try {
-        const browser = await puppeteer.launch();
+        browser = await chrome.puppeteer.launch({
+            args: chrome.args,
+            executablePath: await chrome.executablePath,
+            headless: chrome.headless,
+        });
+        
         const page = await browser.newPage();
-
         await page.goto('https://www.gia.edu/report-check-landing');
-
         await page.type('#reportno', reportNumber);
-
         await page.click('.btn.search-btn[data-uw-rm-form="submit"]');
+        await page.waitForTimeout(5000); // increased to 5 seconds
 
-        await page.waitForTimeout(3000);  // wait for 3 seconds for data to load
-
-        // Replace '#YOUR_DATA_ELEMENT_ID' with the selector that targets the element containing the desired data
-        const reportData = await page.$eval('SHAPE', el => el.textContent);
+        const reportData = await page.$eval('#SHAPE', el => el.textContent);
 
         await browser.close();
 
         return {
             statusCode: 200,
-            headers: corsHeaders,
+            headers: {
+                'Access-Control-Allow-Origin': 'https://andoultra.github.io',
+                'Access-Control-Allow-Headers': 'Content-Type'
+            },
             body: JSON.stringify({ data: reportData }),
         };
 
     } catch (error) {
         return {
             statusCode: 500,
-            headers: corsHeaders,
+            headers: {
+                'Access-Control-Allow-Origin': 'https://andoultra.github.io',
+                'Access-Control-Allow-Headers': 'Content-Type'
+            },
             body: JSON.stringify({ error: 'Failed to retrieve data' }),
         };
     }
+
 console.log('Navigating to GIA website...');
 await page.goto('https://www.gia.edu/report-check-landing');
 
