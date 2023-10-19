@@ -1,4 +1,5 @@
 const chromium = require('chrome-aws-lambda');
+const puppeteer = require('puppeteer-core');  // Import puppeteer-core
 
 exports.handler = async (event) => {
     const reportNumber = event.queryStringParameters.reportNumber;
@@ -17,13 +18,13 @@ exports.handler = async (event) => {
     let browser;
 
     try {
-        console.log('Chromium path:', await chromium.executablePath);  // Log the path here
+        const executablePath = await chromium.executablePath;  // This is where we get the path to Chromium
 
         console.log('Launching browser...');
-        browser = await chromium.puppeteer.launch({
+        browser = await puppeteer.launch({
             args: chromium.args,
             defaultViewport: chromium.defaultViewport,
-            executablePath: await chromium.executablePath,
+            executablePath: executablePath,  // Use the Chromium path here
             headless: chromium.headless,
         });
 
