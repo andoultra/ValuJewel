@@ -1,9 +1,11 @@
-import os  # Import the os module
+import os
 import requests
 from bs4 import BeautifulSoup
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # Import the Flask-CORS extension
 
 app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "https://andoultra.github.io"}})  # Setup CORS
 
 # Disable favicon requests
 @app.route('/favicon.ico')
@@ -40,5 +42,5 @@ def scrape_gem_info():
         return jsonify({"error": str(e)})
 
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 5000))  # Use the PORT environment variable, or 5000 if it's not set
-    app.run(host='0.0.0.0', port=port)  # Bind to 0.0.0.0 and use the specified port
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
