@@ -6,9 +6,11 @@ const maxExecutionTime = 8000;  // Set a maximum execution time (in milliseconds
 async function describeJewelry(jewelryType, material, cut, ringSize, gender, ringType) {
     let promptDescription = `You are a jeweler. Generate a technical description of a ${jewelryType} made of ${material}.`;
 
-    if (jewelryType === ring && ringSize && gender && ringType) {
+    if (jewelryType === 'ring' && ringSize && gender && ringType) {
         promptDescription += ` The ring is designed is a ${gender} ${ringType}, and is size ${ringSize}.`;
     }
+
+    console.log('Prompt to OpenAI:', promptDescription);  // Log the prompt to the console
 
     try {
         const response = await axios.post(
