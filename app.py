@@ -3,7 +3,6 @@ import requests
 from bs4 import BeautifulSoup
 from flask import Flask, request, jsonify
 from flask_cors import CORS  # Import the Flask-CORS extension
-print(f"Received request: {request.json}")
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "https://andoultra.github.io"}})  # Setup CORS
@@ -15,6 +14,7 @@ def favicon():
 
 @app.route('/api/gem_scrape', methods=['POST'])
 def scrape_gem_info():
+    print(f"Received request: {request.json}")  # Moved inside the function
     try:
         giaCertification = request.json['giaCertification']
         
