@@ -1,3 +1,4 @@
+import os  # Import the os module
 import requests
 from bs4 import BeautifulSoup
 from flask import Flask, request, jsonify
@@ -39,4 +40,5 @@ def scrape_gem_info():
         return jsonify({"error": str(e)})
 
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get('PORT', 5000))  # Use the PORT environment variable, or 5000 if it's not set
+    app.run(host='0.0.0.0', port=port)  # Bind to 0.0.0.0 and use the specified port
