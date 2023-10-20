@@ -35,62 +35,47 @@ document.getElementById('jewelryType').addEventListener('change', function() {
     } else {
         ringOptionsDiv.style.display = 'none';
     }
-document.getElementById('jewelryForm').addEventListener('submit', async (event) => {
-    event.preventDefault();
+ddocument.getElementById('jewelryForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
 
-    const description = document.getElementById('description').value;
-    const ownerName = document.getElementById('ownerName').value;
-    const ownerAddress = document.getElementById('ownerAddress').value;
-    const appraisalDate = document.getElementById('appraisalDate').value;
-    const estimatedValue = document.getElementById('estimatedValue').value;
+        const description = document.getElementById('description').value;
+        const ownerName = document.getElementById('ownerName').value;
+        const ownerAddress = document.getElementById('ownerAddress').value;
+        const appraisalDate = document.getElementById('appraisalDate').value;
+        const estimatedValue = document.getElementById('estimatedValue').value;
 
-    const images = [];
-    for (let i = 1; i <= 3; i++) {
-        const imageInput = document.getElementById('image' + i);
-        if (imageInput.files[0]) {
-            const base64Image = await toBase64(imageInput.files[0]);
-            images.push(base64Image);
-        }
-    }
+        const images = [];
 
-    const requestData = {
-        description,
-        ownerName,
-        ownerAddress,
-        appraisalDate,
-        estimatedValue,
-        images
-    };
+        // Iterate over the image inputs
+        for (let i = 1; i <= 3; i++) {
+            const imageInput = document.getElementById('image' + i);
 
-    try {
-        const response = await fetch('https://willowy-pie-2fe033.netlify.app/.netlify/functions/pdf', {
-            method: 'POST',
-            body: JSON.stringify(requestData)
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to generate PDF');
+            // Only proceed if the input exists and has files
+            if (imageInput && imageInput.files.length > 0) {
+                const base64Image = await toBase64(imageInput.files[0]);
+                images.push(base64Image);
+            }
         }
 
-        const blob = await response.blob();
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'jewelry_appraisal.pdf';
-        link.click();
+        const requestData = {
+            description,
+            ownerName,
+            ownerAddress,
+            appraisalDate,
+            estimatedValue,
+            images
+        };
 
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Error generating PDF. Please try again.');
-    }
-});
-
-function toBase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result.split(',')[1]);
-        reader.onerror = error => reject(error);
+        // ... [the rest of your code]
     });
-}
+
+    function toBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result.split(',')[1]);
+            reader.onerror = error => reject(error);
+        });
+    }
 });
 
