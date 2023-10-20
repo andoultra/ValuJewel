@@ -20,12 +20,18 @@ def scrape_gem_info():
         url = 'https://www.gia.edu/report-check-landing'
         data = {'reportno': giaCertification}
         
+        # Setup headers to mimic a browser request
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+            'Referer': url
+        }
+        
         # First request to awaken the page
         session = requests.Session()
-        session.get(url)
+        session.get(url, headers=headers)  # Apply headers to the first request as well
     
         # Second request to submit the form
-        response = session.post(url, data=data)
+        response = session.post(url, data=data, headers=headers)
     
         if response.status_code == 200:
             soup = BeautifulSoup(response.text, 'html.parser')
@@ -37,11 +43,11 @@ def scrape_gem_info():
             else:
                 return jsonify({"description": "Shape not found"})
         else:
-            print(f"Failed request: {response.status_code}, {response.text}")  # Debugging line
+            print(f"Failed request: {response.status_code}, {response.text}")
             return jsonify({"description": "Failed to fetch data"})
     except Exception as e:
         return jsonify({"error": str(e)})
-        
+
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
