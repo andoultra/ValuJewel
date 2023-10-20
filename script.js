@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
 const jewelryForm = document.getElementById('jewelryForm');
 const descriptionElement = document.getElementById('description');
 
