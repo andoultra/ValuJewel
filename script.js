@@ -25,10 +25,6 @@ jewelryForm.addEventListener('submit', async (event) => {
     }
 });
 
-
-
-
-
 const giaCertificationInput = document.getElementById('giaCertification');
 const fetchGemDataButton = document.getElementById('fetchGemDataButton');
 const gemDataElement = document.getElementById('gemData');
@@ -42,17 +38,22 @@ fetchGemDataButton.addEventListener('click', async () => {
     }
 
     try {
-        const response = await fetch(`https://valuejewel-5870b45ecc13.herokuapp.com/=${certificationNumber}`);
+        const response = await fetch(`https://valuejewel-5870b45ecc13.herokuapp.com/api/gem_scrape`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ giaCertification: certificationNumber }),
+        });
 
         if (!response.ok) {
-    const responseBody = await response.text();
-    console.error('Server responded with:', responseBody);
-    throw new Error('Failed to fetch gem data.');
-      }
-
+            const responseBody = await response.text();
+            console.error('Server responded with:', responseBody);
+            throw new Error('Failed to fetch gem data.');
+        }
 
         const data = await response.json();
-        gemDataElement.textContent = JSON.stringify(data.data, null, 2);
+        gemDataElement.textContent = data.description;  // Assuming the key for the description in the response is 'description'
     } catch (error) {
         console.error('Error:', error);
         gemDataElement.textContent = 'Failed to fetch gem data. Please try again later.';
