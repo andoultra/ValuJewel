@@ -8,8 +8,10 @@ jewelryForm.addEventListener('submit', async (event) => {
     const jewelryMaterial = encodeURIComponent(document.getElementById('jewelryMaterial').value);
     const giaCertification = encodeURIComponent(document.getElementById('giaCertification').value);
     const ringType =encodeURIComponent(document.getElementById('ringType').value);
+    const gender =encodeURIComponent(document.getElementById('gender').value);
+    const ringSize=encodeURIComponent(document.getElementById('ringSize').value)
 
-    const requestURL = `https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description?type=${jewelryType}&material=${jewelryMaterial}&giaCertification=${giaCertification}&ringType=${ringType}`;
+    const requestURL = `https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description?type=${jewelryType}&material=${jewelryMaterial}&giaCertification=${giaCertification}&ringType=${ringType}&gender=${gender}&ringSize=${ringSize}`;
 
     try {
         const response = await fetch(requestURL);
@@ -35,6 +37,3 @@ document.getElementById('jewelryType').addEventListener('change', function() {
     }
 });
 
-const giaCertificationInput = document.getElementById('giaCertification');
-const fetchGemDataButton = document.getElementById('fetchGemDataButton');
-const gemDataElement = document.getElementById('gemData');

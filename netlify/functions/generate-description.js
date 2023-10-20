@@ -3,10 +3,10 @@ const axios = require('axios');
 const apiKey = process.env.OPENAI_API_KEY;
 const maxExecutionTime = 8000;  // Set a maximum execution time (in milliseconds)
 
-async function describeJewelry(type, material, cut, ringSize, gender, ringType) {
-    let promptDescription = `You are a jeweler. Generate a technical description of a ${type} jewelry piece made of ${material}.`;
+async function describeJewelry(jewelryType, material, cut, ringSize, gender, ringType) {
+    let promptDescription = `You are a jeweler. Generate a technical description of a ${jewelryType} jewelry piece made of ${material}.`;
 
-    if (type === 'ring' && ringSize && gender && ringType) {
+    if (type === jewelryType && ringSize && gender && ringType) {
         promptDescription += ` The ring is designed for ${gender}, has a size of ${ringSize}, and is categorized as a ${ringType}.`;
     }
 
