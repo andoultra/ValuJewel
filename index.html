@@ -87,6 +87,10 @@
 
     <!-- Form for input -->
     <form id="jewelryForm">
+        <input type="text" id="ownerName" placeholder="Owner's Name">
+        <input type="text" id="ownerAddress" placeholder="Owner's Address">
+        <input type="date" id="appraisalDate" placeholder="Appraisal Date">
+        
         <label for="jewelryType">Jewelry Type:</label>
         <select id="jewelryType" name="jewelryType" required>
             <option value="" disabled selected>Please select jewelry type</option>
@@ -122,7 +126,7 @@
         
         <label for="giaCertification">GIA Certification Number:</label>
         <input type="text" id="giaCertification" name="giaCertification">
-        
+        <input type="text" id="estimatedValue" placeholder="Estimated Value">
         <button type="submit">Generate Description</button>
     </form>
     
