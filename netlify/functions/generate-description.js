@@ -6,7 +6,7 @@ const maxExecutionTime = 8000;  // Set a maximum execution time (in milliseconds
 async function describeJewelry(jewelryType, material, cut, ringSize, gender, ringType) {
     let promptDescription = `You are a jeweler. Generate a technical description of a ${jewelryType} jewelry piece made of ${material}.`;
 
-    if (jewelryType === 'ring' && ringSize && gender && ringType) {
+    if (jewelryType === ring && ringSize && gender && ringType) {
         promptDescription += ` The ring is designed for ${gender}, has a size of ${ringSize}, and is categorized as a ${ringType}.`;
     }
 
