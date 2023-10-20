@@ -14,7 +14,6 @@ def favicon():
 
 @app.route('/api/gem_scrape', methods=['POST'])
 def scrape_gem_info():
-    print(f"Received request: {request.json}")  # Moved inside the function
     try:
         giaCertification = request.json['giaCertification']
         
@@ -38,10 +37,11 @@ def scrape_gem_info():
             else:
                 return jsonify({"description": "Shape not found"})
         else:
+            print(f"Failed request: {response.status_code}, {response.text}")  # Debugging line
             return jsonify({"description": "Failed to fetch data"})
     except Exception as e:
         return jsonify({"error": str(e)})
-
+        
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
