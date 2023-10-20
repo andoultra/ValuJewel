@@ -35,7 +35,7 @@ document.getElementById('jewelryType').addEventListener('change', function() {
     } else {
         ringOptionsDiv.style.display = 'none';
     }
-document.getElementById('jewelryAppraisalForm').addEventListener('submit', async (event) => {
+document.getElementById('jewelryForm').addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const description = document.getElementById('description').value;
