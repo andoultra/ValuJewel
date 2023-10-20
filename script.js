@@ -63,7 +63,7 @@ document.getElementById('jewelryAppraisalForm').addEventListener('submit', async
     };
 
     try {
-        const response = await fetch('https://your-netlify-site/.netlify/functions/pdf', {
+        const response = await fetch('https://willowy-pie-2fe033.netlify.app/.netlify/functions/pdf', {
             method: 'POST',
             body: JSON.stringify(requestData)
         });
