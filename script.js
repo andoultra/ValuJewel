@@ -24,6 +24,11 @@ jewelryForm.addEventListener('submit', async (event) => {
         descriptionElement.textContent = 'Error fetching description. Please try again.';
     }
 });
+
+
+
+
+
 const giaCertificationInput = document.getElementById('giaCertification');
 const fetchGemDataButton = document.getElementById('fetchGemDataButton');
 const gemDataElement = document.getElementById('gemData');
@@ -37,7 +42,7 @@ fetchGemDataButton.addEventListener('click', async () => {
     }
 
     try {
-        const response = await fetch(`https://willowy-pie-2fe033.netlify.app/.netlify/functions/fetchGemData?giaCertification=${certificationNumber}`);
+        const response = await fetch(`https://valuejewel-5870b45ecc13.herokuapp.com/=${certificationNumber}`);
 
         if (!response.ok) {
     const responseBody = await response.text();
