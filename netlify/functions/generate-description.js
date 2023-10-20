@@ -1,17 +1,13 @@
 const axios = require('axios');
 
 const apiKey = process.env.OPENAI_API_KEY;
-const maxExecutionTime = 8000; // Set a maximum execution time (in milliseconds)
+const maxExecutionTime = 8000;  // Set a maximum execution time (in milliseconds)
 
-async function describeJewelry(type, material, cut, ringSize, necklaceLength) {
+async function describeJewelry(type, material, cut, ringSize, gender, ringType) {
     let promptDescription = `Generate a technical description of a ${type} jewelry piece made of ${material}. Include details such as design, size, and any unique features.`;
 
-    if (type === 'ring' && ringSize) {
-        promptDescription += ` The ring size is ${ringSize}.`;
-    }
-
-    if (type === 'necklace' && necklaceLength) {
-        promptDescription += ` The necklace length is ${necklaceLength}.`;
+    if (type === 'ring' && ringSize && gender && ringType) {
+        promptDescription += ` The ring is designed for ${gender}, has a size of ${ringSize}, and is categorized as a ${ringType}.`;
     }
 
     try {
@@ -20,7 +16,7 @@ async function describeJewelry(type, material, cut, ringSize, necklaceLength) {
             {
                 prompt: promptDescription,
                 max_tokens: 150,
-                temperature: 0.2,
+                temperature: 0.1,
             },
             {
                 headers: {
@@ -40,9 +36,9 @@ async function describeJewelry(type, material, cut, ringSize, necklaceLength) {
 
 exports.handler = async (event) => {
     try {
-        const { type, material, Cut, ringSize, necklaceLength } = event.queryStringParameters || {};
+        const { type, material, cut, ringSize, gender, ringType } = event.queryStringParameters || {};
 
-        const description = await describeJewelry(type, material, Cut, ringSize, necklaceLength);
+        const description = await describeJewelry(type, material, cut, ringSize, gender, ringType);
 
         const headers = {
             'Access-Control-Allow-Origin': 'https://andoultra.github.io',

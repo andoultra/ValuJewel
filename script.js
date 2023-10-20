@@ -6,9 +6,9 @@ jewelryForm.addEventListener('submit', async (event) => {
 
     const jewelryType = encodeURIComponent(document.getElementById('jewelryType').value);
     const jewelryMaterial = encodeURIComponent(document.getElementById('jewelryMaterial').value);
-    const Cut = encodeURIComponent(document.getElementById('Cut').value); // Capture Cut value
+    const giaCertification = encodeURIComponent(document.getElementById('giaCertification').value);
 
-    const requestURL = `https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description?type=${jewelryType}&material=${jewelryMaterial}&Cut=${Cut}`;
+    const requestURL = `https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description?type=${jewelryType}&material=${jewelryMaterial}&giaCertification=${giaCertification}`;
 
     try {
         const response = await fetch(requestURL);
@@ -25,38 +25,15 @@ jewelryForm.addEventListener('submit', async (event) => {
     }
 });
 
-const giaCertificationInput = document.getElementById('giaCertification');
-const fetchGemDataButton = document.getElementById('fetchGemDataButton');
-const gemDataElement = document.getElementById('gemData');
-
-fetchGemDataButton.addEventListener('click', async () => {
-    const certificationNumber = giaCertificationInput.value;
-
-    if (!certificationNumber) {
-        alert('Please enter a GIA certification number.');
-        return;
-    }
-
-    try {
-        const response = await fetch(`https://valuejewel-5870b45ecc13.herokuapp.com/api/gem_scrape`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ giaCertification: certificationNumber }),
-        });
-
-        if (!response.ok) {
-            const responseBody = await response.text();
-            console.error('Server responded with:', responseBody);
-            throw new Error('Failed to fetch gem data.');
-        }
-
-        const data = await response.json();
-        gemDataElement.textContent = data.description;  // Assuming the key for the description in the response is 'description'
-    } catch (error) {
-        console.error('Error:', error);
-        gemDataElement.textContent = 'Failed to fetch gem data. Please try again later.';
+document.getElementById('jewelryType').addEventListener('change', function() {
+    const ringOptionsDiv = document.getElementById('ringOptions');
+    if (this.value === 'ring') {
+        ringOptionsDiv.style.display = 'block';
+    } else {
+        ringOptionsDiv.style.display = 'none';
     }
 });
 
+const giaCertificationInput = document.getElementById('giaCertification');
+const fetchGemDataButton = document.getElementById('fetchGemDataButton');
+const gemDataElement = document.getElementById('gemData');

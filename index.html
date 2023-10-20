@@ -4,113 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ValuJewel - Appraisal Assistant</title>
- <style>
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #fafafa;
-    color: #333;
-}
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fafafa;
+            color: #333;
+        }
 
-header {
-    background-color: #2C3E50;
-    color: #ecf0f1;
-    text-align: center;
-    padding: 20px 0;
-    border-bottom: 3px solid #3498db;
-}
-
-h1 {
-    font-size: 2rem;
-    margin: 0;
-}
-
-main {
-    max-width: 650px;
-    margin: 40px auto;
-    padding: 30px 40px;
-    background-color: #fff;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-}
-
-label {
-    font-weight: 600;
-    margin-bottom: 10px;
-    display: block;
-    color: #7f8c8d;
-}
-
-input[type="text"] {
-    width: 100%;
-    padding: 10px 15px;
-    margin-bottom: 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: border-color 0.3s;
-}
-
-input[type="text"]:focus {
-    border-color: #3498db;
-    outline: none;
-    box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
-}
-
-button[type="submit"] {
-    width: 100%;
-    background-color: #3498db;
-    color: #ffffff;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-}
-
-button[type="submit"]:hover {
-    background-color: #2980b9;
-}
-
-p#description {
-    margin-top: 30px;
-    font-size: 1.1rem;
-    color: #7f8c8d;
-    border-top: 1px solid #e0e0e0;
-    padding-top: 20px;
-}
-
-
+        /* ... rest of your CSS ... */
     </style>
-  </head>
+</head>
 <body>
     <h1>ValuJewel - Appraisal Assistant</h1>
 
     <!-- Form for input -->
     <form id="jewelryForm">
-    <label for="jewelryType">Jewelry Type:</label>
-    <input type="text" id="jewelryType" name="jewelryType" required>
+        <label for="jewelryType">Jewelry Type:</label>
+        <select id="jewelryType" name="jewelryType" required>
+            <option value="ring">Ring</option>
+            <option value="necklace">Necklace</option>
+            <!-- ... other jewelry types ... -->
+        </select>
+        
+        <div id="ringOptions" style="display: none;">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="men">Men's</option>
+                <option value="women">Women's</option>
+            </select>
+            
+            <label for="ringSize">Ring Size:</label>
+            <input type="text" id="ringSize" name="ringSize">
+            
+            <!-- ... other ring-specific fields ... -->
+        </div>
+        
+        <label for="jewelryMaterial">Material:</label>
+        <input type="text" id="jewelryMaterial" name="jewelryMaterial" required>
+        
+        <label for="Cut">Cut:</label>
+        <input type="text" id="Cut" name="Cut" required>
+        
+        <label for="giaCertification">GIA Certification Number:</label>
+        <input type="text" id="giaCertification" name="giaCertification">
+        
+        <button type="submit">Generate Description</button>
+    </form>
     
-    <label for="jewelryMaterial">Material:</label>
-    <input type="text" id="jewelryMaterial" name="jewelryMaterial" required>
-
-    <label for="Cut">Cut:</label>
-    <input type="text" id="Cut" name="Cut" required>
-    <label for="giaCertification">GIA Certification Number:</label>
-<input type="text" id="giaCertification" name="giaCertification">
-
-<button id="fetchGemDataButton">Fetch Gem Data</button>
-
-
-    <button type="submit">Generate Description</button>
-
-</form>
-
-
     <p id="description">Description will appear here.</p>
-<div><p id="gemData">Gem data will appear here.</p></div>
+  
+
     <!-- Include the JavaScript file -->
     <script src="script.js"></script>
 </body>
