@@ -2,8 +2,9 @@ const { PDFDocument, rgb } = PDFLib;
 
 exports.handler = async (event) => {
     const headers = {
-        'Access-Control-Allow-Origin': 'https://andoultra.github.io',
+        'Access-Control-Allow-Origin': 'https://andoultra.github.io', // This is your frontend domain
         'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT,'
     };
 
     try {
