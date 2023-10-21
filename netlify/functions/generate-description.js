@@ -18,7 +18,7 @@ async function describeJewelry(jewelryType, material, cut, ringSize, gender, rin
             {
                 prompt: promptDescription,
                 max_tokens: 150,
-                temperature: 0.0,
+                temperature: 0.2,
             },
             {
                 headers: {

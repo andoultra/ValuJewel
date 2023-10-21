@@ -56,14 +56,15 @@ exports.handler = async (event) => {
         page.drawText('Date', { x: 400, y: 650, size: 12 });
         page.drawText(appraisalDate, { x: 445, y: 650, size: 12 });
 
-        // Add article description
+       // Add article description with text wrapping
         page.drawText('Article Description', { x: 50, y: 600, size: 16 });
-        page.drawText(description, { x: 50, y: 570, size: 12, width: 500, height: 250 });
+        page.drawText(description, { x: 50, y: 570, size: 12, maxWidth: 500 });
 
-        // Add estimated replacement value
+    // Add estimated replacement value
         page.drawText('Estimated', { x: 400, y: 600, size: 12 });
         page.drawText('Replacement Value', { x: 400, y: 585, size: 12 });
-        page.drawText(`$ ${estimatedValue}`, { x: 450, y: 570, size: 12 });
+        page.drawText(`$ ${estimatedValue}`, { x: 400, y: 570, size: 12 });
+
 
         // Embed images from base64 encoded array
         let yPosition = 320;
