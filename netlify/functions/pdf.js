@@ -1,14 +1,17 @@
 const { PDFDocument } = require('pdf-lib');
 
 exports.handler = async (event) => {
+    // Common CORS headers
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+    };
+
     if (event.httpMethod === 'OPTIONS') {
         return {
             statusCode: 200,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type',
-            },
+            headers,
             body: '', // OPTIONS request doesn't have a body
         };
     }
@@ -86,19 +89,12 @@ exports.handler = async (event) => {
             body: JSON.stringify({ pdfData: base64PDF }),
         };
 
-    } 
-
-    catch (error) {
-    console.error('Error:', error);
-    const headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-    };
-
-    return {
-        statusCode: 500,
-        headers,
-        body: JSON.stringify({ error: 'Error generating PDF' }),
-    };
-}
+    } catch (error) {
+        console.error('Error:', error);
+        return {
+            statusCode: 500,
+            headers,
+            body: JSON.stringify({ error: 'Error generating PDF' }),
+        };
+    }
+};
