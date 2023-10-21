@@ -1,4 +1,4 @@
-const { PDFDocument, rgb } = PDFLib;
+const PDFLib = require('pdf-lib');
 
 exports.handler = async (event) => {
     const headers = {
