@@ -7,9 +7,9 @@ jewelryForm.addEventListener('submit', async (event) => {
     const jewelryType = encodeURIComponent(document.getElementById('jewelryType').value);
     const jewelryMaterial = encodeURIComponent(document.getElementById('jewelryMaterial').value);
     const giaCertification = encodeURIComponent(document.getElementById('giaCertification').value);
-    const ringType =encodeURIComponent(document.getElementById('ringType').value);
-    const gender =encodeURIComponent(document.getElementById('gender').value);
-    const ringSize=encodeURIComponent(document.getElementById('ringSize').value)
+    const ringType = encodeURIComponent(document.getElementById('ringType').value);
+    const gender = encodeURIComponent(document.getElementById('gender').value);
+    const ringSize = encodeURIComponent(document.getElementById('ringSize').value);
 
     const requestURL = `https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description?type=${jewelryType}&material=${jewelryMaterial}&giaCertification=${giaCertification}&ringType=${ringType}&gender=${gender}&ringSize=${ringSize}`;
 
@@ -116,5 +116,5 @@ function base64ToBlob(base64, mimeType) {
         byteNumbers[i] = byteCharacters.charCodeAt(i);
     }
     const byteArray = new Uint8Array(byteNumbers);
-    return new Blob([byteArray], {type: mimeType});
+    return new Blob([byteArray], { type: mimeType });
 }
