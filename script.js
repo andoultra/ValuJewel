@@ -46,15 +46,7 @@ async function generatePDF() {
     const appraisalDate = document.getElementById('appraisalDate').value;
     const estimatedValue = document.getElementById('estimatedValue').value;
 
-    const images = [];
-
-    for (let i = 1; i <= 3; i++) {
-        const imageInput = document.getElementById(`image${i}`);
-        if (imageInput && imageInput.files.length > 0) {
-            const base64Image = await toBase64(imageInput.files[0]);
-            images.push(base64Image);
-        }
-    }
+    const images = await getBase64Images();
 
     const requestData = {
         description,
@@ -76,22 +68,33 @@ async function generatePDF() {
         });
 
         if (!response.ok) {
-            throw new Error('Failed to generate PDF');
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Failed to generate PDF');
         }
 
         const data = await response.json();
-        // TODO: Handle the response data, e.g., provide a download link for the generated PDF.
+        if (data && data.downloadLink) {
+            window.location.href = data.downloadLink; // Direct the browser to download the PDF
+        } else {
+            descriptionElement.textContent = 'Error downloading the PDF. Please try again.';
+        }
     } catch (error) {
         console.error('Error:', error);
         descriptionElement.textContent = 'Error generating PDF. Please try again.';
     }
 }
-function toBase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result.split(',')[1]);
-        reader.onerror = (error) => reject(error);
-    });
+
+async function getBase64Images() {
+    const images = [];
+
+    for (let i = 1; i <= 3; i++) {
+        const imageInput = document.getElementById(`image${i}`);
+        if (imageInput && imageInput.files.length > 0) {
+            const base64Image = await toBase64(imageInput.files[0]);
+            images.push(base64Image);
+        }
+    }
+
+    return images;
 }
 
