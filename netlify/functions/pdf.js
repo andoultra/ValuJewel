@@ -2,7 +2,7 @@ const PDFLib = require('pdf-lib');
 
 exports.handler = async (event) => {
     const headers = {
-        'Access-Control-Allow-Origin': 'https://andoultra.github.io', // This is your frontend domain
+        'Access-Control-Allow-Origin': '*', // This is your frontend domain
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Allow-Methods': 'GET, POST, PUT,'
     };
@@ -85,7 +85,7 @@ exports.handler = async (event) => {
         return {
             statusCode: 500,
             headers: {
-                'Access-Control-Allow-Origin': 'https://andoultra.github.io',
+                'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Headers': 'Content-Type',
             },
             body: JSON.stringify({ error: 'Error generating PDF' }),
