@@ -36,6 +36,9 @@ document.getElementById('jewelryType').addEventListener('change', function() {
         ringOptionsDiv.style.display = 'none';
     }
 });
+
+document.getElementById("generatePdfButton").addEventListener("click", generatePDF);
+
 async function generatePDF() {
     const description = descriptionElement.textContent;
     const ownerName = document.getElementById('ownerName').value;
