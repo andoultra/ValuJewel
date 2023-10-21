@@ -36,4 +36,59 @@ document.getElementById('jewelryType').addEventListener('change', function() {
         ringOptionsDiv.style.display = 'none';
     }
 });
+async function generatePDF() {
+    const description = descriptionElement.textContent;
+    const ownerName = document.getElementById('ownerName').value;
+    const ownerAddress = document.getElementById('ownerAddress').value;
+    const appraisalDate = document.getElementById('appraisalDate').value;
+    const estimatedValue = document.getElementById('estimatedValue').value;
+
+    const images = [];
+
+    for (let i = 1; i <= 3; i++) {
+        const imageInput = document.getElementById(`image${i}`);
+        if (imageInput && imageInput.files.length > 0) {
+            const base64Image = await toBase64(imageInput.files[0]);
+            images.push(base64Image);
+        }
+    }
+
+    const requestData = {
+        description,
+        ownerName,
+        ownerAddress,
+        appraisalDate,
+        estimatedValue,
+        images
+    };
+
+    const requestURL = "https://willowy-pie-2fe033.netlify.app/.netlify/functions/pdf";
+    try {
+        const response = await fetch(requestURL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestData),
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to generate PDF');
+        }
+
+        const data = await response.json();
+        // TODO: Handle the response data, e.g., provide a download link for the generated PDF.
+    } catch (error) {
+        console.error('Error:', error);
+        descriptionElement.textContent = 'Error generating PDF. Please try again.';
+    }
+}
+function toBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = (error) => reject(error);
+    });
+}
 
