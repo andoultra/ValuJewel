@@ -35,47 +35,5 @@ document.getElementById('jewelryType').addEventListener('change', function() {
     } else {
         ringOptionsDiv.style.display = 'none';
     }
-document.getElementById('jewelryForm').addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-        const description = document.getElementById('description').value;
-        const ownerName = document.getElementById('ownerName').value;
-        const ownerAddress = document.getElementById('ownerAddress').value;
-        const appraisalDate = document.getElementById('appraisalDate').value;
-        const estimatedValue = document.getElementById('estimatedValue').value;
-
-        const images = [];
-
-        // Iterate over the image inputs
-        for (let i = 1; i <= 3; i++) {
-            const imageInput = document.getElementById('image' + i);
-
-            // Only proceed if the input exists and has files
-            if (imageInput && imageInput.files.length > 0) {
-                const base64Image = await toBase64(imageInput.files[0]);
-                images.push(base64Image);
-            }
-        }
-
-        const requestData = {
-            description,
-            ownerName,
-            ownerAddress,
-            appraisalDate,
-            estimatedValue,
-            images
-        };
-
-        // ... [the rest of your code]
-    });
-
-    function toBase64(file) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result.split(',')[1]);
-            reader.onerror = error => reject(error);
-        });
-    }
 });
 
