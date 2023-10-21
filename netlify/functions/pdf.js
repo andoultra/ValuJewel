@@ -77,3 +77,28 @@ document.getElementById('jewelryAppraisalForm').addEventListener('submit', funct
     event.preventDefault();
     generatePDF();
 });
+exports.handler = async (event) => {
+    const headers = {
+        'Access-Control-Allow-Origin': 'https://andoultra.github.io',
+        'Access-Control-Allow-Headers': 'Content-Type',
+    };
+    
+    try {
+        // Your PDF generation logic here...
+        
+        return {
+            statusCode: 200,
+            headers,
+            body: JSON.stringify({ /*...your response data...*/ }),
+        };
+
+    } catch (error) {
+        console.error('Error:', error);
+
+        return {
+            statusCode: 500,
+            headers,
+            body: JSON.stringify({ error: 'Error generating PDF' }),
+        };
+    }
+};
