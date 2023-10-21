@@ -51,7 +51,6 @@ async function generatePDF() {
     const logoUrl = 'https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_811,h_124/https://www.davidgardnersjewelers.com/wp-content/themes/ttg/src/dist/img/logo.png'; // Modify this to your actual logo URL
 
     const requestData = {
-    const requestData = {
         description,
         ownerName,
         ownerAddress,
