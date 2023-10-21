@@ -48,6 +48,9 @@ async function generatePDF() {
 
     const images = await getBase64Images();
 
+    const logoUrl = 'https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_811,h_124/https://www.davidgardnersjewelers.com/wp-content/themes/ttg/src/dist/img/logo.png'; // Modify this to your actual logo URL
+
+    const requestData = {
     const requestData = {
         description,
         ownerName,
@@ -55,6 +58,7 @@ async function generatePDF() {
         appraisalDate,
         estimatedValue,
         images
+        logoUrl
     };
 
     const requestURL = "https://willowy-pie-2fe033.netlify.app/.netlify/functions/pdf";
