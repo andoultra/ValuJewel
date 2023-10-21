@@ -1,21 +1,25 @@
+// DOM Elements
 const jewelryForm = document.getElementById('jewelryForm');
 const descriptionElement = document.getElementById('description');
 
-jewelryForm.addEventListener('submit', async (event) => {
+// Event Listeners
+jewelryForm.addEventListener('submit', handleJewelryFormSubmit);
+document.getElementById('jewelryType').addEventListener('change', handleJewelryTypeChange);
+
+async function handleJewelryFormSubmit(event) {
     event.preventDefault();
 
     const jewelryType = encodeURIComponent(document.getElementById('jewelryType').value);
     const jewelryMaterial = encodeURIComponent(document.getElementById('jewelryMaterial').value);
     const giaCertification = encodeURIComponent(document.getElementById('giaCertification').value);
-    const ringType =encodeURIComponent(document.getElementById('ringType').value);
-    const gender =encodeURIComponent(document.getElementById('gender').value);
-    const ringSize=encodeURIComponent(document.getElementById('ringSize').value)
+    const ringType = encodeURIComponent(document.getElementById('ringType').value);
+    const gender = encodeURIComponent(document.getElementById('gender').value);
+    const ringSize = encodeURIComponent(document.getElementById('ringSize').value);
 
     const requestURL = `https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description?type=${jewelryType}&material=${jewelryMaterial}&giaCertification=${giaCertification}&ringType=${ringType}&gender=${gender}&ringSize=${ringSize}`;
 
     try {
         const response = await fetch(requestURL);
-
         if (!response.ok) {
             throw new Error('Failed to fetch description');
         }
@@ -26,18 +30,18 @@ jewelryForm.addEventListener('submit', async (event) => {
         console.error('Error:', error);
         descriptionElement.textContent = 'Error fetching description. Please try again.';
     }
-});
+}
 
-document.getElementById('jewelryType').addEventListener('change', function() {
+function handleJewelryTypeChange() {
     const ringOptionsDiv = document.getElementById('ringOptions');
     if (this.value === 'ring') {
         ringOptionsDiv.style.display = 'block';
     } else {
         ringOptionsDiv.style.display = 'none';
     }
+}
 
-
-sync function generatePDF() {
+async function generatePDF() {
     const description = descriptionElement.textContent;
     const ownerName = document.getElementById('ownerName').value;
     const ownerAddress = document.getElementById('ownerAddress').value;
@@ -46,11 +50,8 @@ sync function generatePDF() {
 
     const images = [];
 
-    // Iterate over the image inputs
     for (let i = 1; i <= 3; i++) {
-        const imageInput = document.getElementById('image' + i);
-
-        // Only proceed if the input exists and has files
+        const imageInput = document.getElementById(`image${i}`);
         if (imageInput && imageInput.files.length > 0) {
             const base64Image = await toBase64(imageInput.files[0]);
             images.push(base64Image);
@@ -81,11 +82,18 @@ sync function generatePDF() {
         }
 
         const data = await response.json();
-        // Handle the response data as needed, for example, provide a download link for the generated PDF.
-
+        // TODO: Handle the response data, e.g., provide a download link for the generated PDF.
     } catch (error) {
         console.error('Error:', error);
         descriptionElement.textContent = 'Error generating PDF. Please try again.';
     }
 }
 
+function toBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = (error) => reject(error);
+    });
+}
