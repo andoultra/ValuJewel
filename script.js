@@ -26,7 +26,6 @@ jewelryForm.addEventListener('submit', async (event) => {
         console.error('Error:', error);
         descriptionElement.textContent = 'Error fetching description. Please try again.';
     }
-});
 
 document.getElementById('jewelryType').addEventListener('change', function() {
     const ringOptionsDiv = document.getElementById('ringOptions');
@@ -35,6 +34,8 @@ document.getElementById('jewelryType').addEventListener('change', function() {
     } else {
         ringOptionsDiv.style.display = 'none';
     }
+
+
 async function generatePDF() {
     const description = descriptionElement.textContent;
     const ownerName = document.getElementById('ownerName').value;
