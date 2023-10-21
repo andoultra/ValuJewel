@@ -86,16 +86,19 @@ exports.handler = async (event) => {
             body: JSON.stringify({ pdfData: base64PDF }),
         };
 
-    } catch (error) {
-        console.error('Error:', error);
-        return {
-            statusCode: 500,
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
-                'Access-Control-Allow-Headers': 'Content-Type',
-            },
-            body: JSON.stringify({ error: 'Error generating PDF' }),
-        };
-    }
-};
+    } 
+
+    catch (error) {
+    console.error('Error:', error);
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+    };
+
+    return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({ error: 'Error generating PDF' }),
+    };
+}
