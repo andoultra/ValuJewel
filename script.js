@@ -39,6 +39,7 @@ document.getElementById('jewelryType').addEventListener('change', function() {
 
 document.getElementById("generatePdfButton").addEventListener("click", generatePDF);
 
+
 async function generatePDF() {
     const description = descriptionElement.textContent;
     const ownerName = document.getElementById('ownerName').value;
