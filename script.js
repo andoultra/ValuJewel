@@ -9,7 +9,7 @@ jewelryForm.addEventListener('submit', async (event) => {
     const giaCertification = encodeURIComponent(document.getElementById('giaCertification').value);
     const ringType =encodeURIComponent(document.getElementById('ringType').value);
     const gender =encodeURIComponent(document.getElementById('gender').value);
-    const ringSize=encodeURIComponent(document.getElementById('ringSize').value);
+    const ringSize=encodeURIComponent(document.getElementById('ringSize').value)
 
     const requestURL = `https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description?type=${jewelryType}&material=${jewelryMaterial}&giaCertification=${giaCertification}&ringType=${ringType}&gender=${gender}&ringSize=${ringSize}`;
 
@@ -73,8 +73,10 @@ async function generatePDF() {
         }
 
         const data = await response.json();
-        if (data && data.downloadLink) {
-            window.location.href = data.downloadLink; 
+        if (data && data.pdfData) {
+            const pdfBlob = base64ToBlob(data.pdfData, 'application/pdf');
+            const blobURL = URL.createObjectURL(pdfBlob);
+            window.open(blobURL, '_blank'); // Opens the PDF in a new tab
         } else {
             descriptionElement.textContent = 'Error downloading the PDF. Please try again.';
         }
@@ -102,7 +104,17 @@ function toBase64(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
+        reader.onload = () => resolve(reader.result.split(',')[1]); // Removes the MIME type prefix
         reader.onerror = error => reject(error);
     });
+}
+
+function base64ToBlob(base64, mimeType) {
+    const byteCharacters = atob(base64);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    return new Blob([byteArray], {type: mimeType});
 }
