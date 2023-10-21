@@ -31,7 +31,7 @@ exports.handler = async (event) => {
 
         // Create a new PDF document
         const pdfDoc = await PDFDocument.create();
-        const page = pdfDoc.addPage([2550, 3300]);
+        const page = pdfDoc.addPage([612, 792]);
 
         // Fetch and embed the company logo
         const logoImageBytes = await fetch(logoUrl).then(res => res.arrayBuffer());
