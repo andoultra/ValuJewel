@@ -9,7 +9,7 @@ jewelryForm.addEventListener('submit', async (event) => {
     const giaCertification = encodeURIComponent(document.getElementById('giaCertification').value);
     const ringType =encodeURIComponent(document.getElementById('ringType').value);
     const gender =encodeURIComponent(document.getElementById('gender').value);
-    const ringSize=encodeURIComponent(document.getElementById('ringSize').value)
+    const ringSize=encodeURIComponent(document.getElementById('ringSize').value);
 
     const requestURL = `https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description?type=${jewelryType}&material=${jewelryMaterial}&giaCertification=${giaCertification}&ringType=${ringType}&gender=${gender}&ringSize=${ringSize}`;
 
@@ -39,7 +39,6 @@ document.getElementById('jewelryType').addEventListener('change', function() {
 
 document.getElementById("generatePdfButton").addEventListener("click", generatePDF);
 
-
 async function generatePDF() {
     const description = descriptionElement.textContent;
     const ownerName = document.getElementById('ownerName').value;
@@ -47,7 +46,7 @@ async function generatePDF() {
     const appraisalDate = document.getElementById('appraisalDate').value;
     const estimatedValue = document.getElementById('estimatedValue').value;
     const images = await getBase64Images();
-    const logoUrl = 'https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_811,h_124/https://www.davidgardnersjewelers.com/wp-content/themes/ttg/src/dist/img/logo.png'; // Modify this to your actual logo URL
+    const logoUrl = 'https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_811,h_124/https://www.davidgardnersjewelers.com/wp-content/themes/ttg/src/dist/img/logo.png'; 
     const requestData = {
         description,
         ownerName,
@@ -75,7 +74,7 @@ async function generatePDF() {
 
         const data = await response.json();
         if (data && data.downloadLink) {
-            window.location.href = data.downloadLink; // Direct the browser to download the PDF
+            window.location.href = data.downloadLink; 
         } else {
             descriptionElement.textContent = 'Error downloading the PDF. Please try again.';
         }
@@ -99,3 +98,11 @@ async function getBase64Images() {
     return images;
 }
 
+function toBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
