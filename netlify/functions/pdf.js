@@ -64,7 +64,40 @@ exports.handler = async (event) => {
         page.drawText('Estimated', { x: 400, y: 600, size: 12 });
         page.drawText('Replacement Value', { x: 400, y: 585, size: 12 });
         page.drawText(`$ ${estimatedValue}`, { x: 400, y: 570, size: 12 });
+        
+        // Horizontal lines for the header
+        page.drawLine({
+            start: { x: 50, y: 745 },
+            end: { x: 560, y: 745 },
+        });
+        page.drawLine({
+            start: { x: 50, y: 640 },
+            end: { x: 560, y: 640 },
+        });
 
+        // Line separating 'Property of' and its details
+        page.drawLine({
+            start: { x: 400, y: 700 },
+            end: { x: 560, y: 700 },
+        });
+
+        // Line separating 'Date' and its details
+        page.drawLine({
+            start: { x: 400, y: 670 },
+            end: { x: 560, y: 670 },
+        });
+
+        // Line separating 'Article Description' and its details
+        page.drawLine({
+            start: { x: 50, y: 605 },
+            end: { x: 560, y: 605 },
+        });
+
+        // Line separating 'Estimated Replacement Value' and its details
+        page.drawLine({
+            start: { x: 400, y: 580 },
+            end: { x: 560, y: 580 },
+        });
 
         // Embed images from base64 encoded array
         let yPosition = 320;
