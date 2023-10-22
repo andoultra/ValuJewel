@@ -65,39 +65,35 @@ exports.handler = async (event) => {
         page.drawText('Replacement Value', { x: 400, y: 585, size: 12 });
         page.drawText(`$ ${estimatedValue}`, { x: 400, y: 570, size: 12 });
         
-        // Horizontal lines for the header
-        page.drawLine({
-            start: { x: 50, y: 745 },
-            end: { x: 560, y: 745 },
-        });
-        page.drawLine({
-            start: { x: 50, y: 640 },
-            end: { x: 560, y: 640 },
-        });
+       // Horizontal line after the header
+            page.drawLine({
+                start: { x: 50, y: 755 },
+                end: { x: 560, y: 755 },
+            });
 
-        // Line separating 'Property of' and its details
-        page.drawLine({
-            start: { x: 400, y: 700 },
-            end: { x: 560, y: 700 },
-        });
+            // Horizontal line after "Property of" and "Date" details
+            page.drawLine({
+                start: { x: 50, y: 700 },
+                end: { x: 560, y: 700 },
+            });
 
-        // Line separating 'Date' and its details
-        page.drawLine({
-            start: { x: 400, y: 670 },
-            end: { x: 560, y: 670 },
-        });
+            // Vertical line separating "Property of" and "Date"
+            page.drawLine({
+                start: { x: 400, y: 730 },
+                end: { x: 400, y: 675 },
+            });
 
-        // Line separating 'Article Description' and its details
-        page.drawLine({
-            start: { x: 50, y: 605 },
-            end: { x: 560, y: 605 },
-        });
+            // Horizontal line after "Article Description" and before the image
+            page.drawLine({
+                start: { x: 50, y: 635 },
+                end: { x: 560, y: 635 },
+            });
 
-        // Line separating 'Estimated Replacement Value' and its details
-        page.drawLine({
-            start: { x: 400, y: 580 },
-            end: { x: 560, y: 580 },
-        });
+            // Vertical line separating "Article Description" and "Estimated Replacement Value"
+            page.drawLine({
+                start: { x: 400, y: 660 },
+                end: { x: 400, y: 645 },
+            });
 
         // Embed images from base64 encoded array
         let yPosition = 320;
