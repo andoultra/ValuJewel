@@ -1,5 +1,5 @@
 const jewelryForm = document.getElementById('jewelryForm');
-const descriptionElement = document.getElementById('description');
+const descriptionElement = document.getElementById('descriptionTextarea'); // Corrected this line
 
 jewelryForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -21,10 +21,10 @@ jewelryForm.addEventListener('submit', async (event) => {
         }
 
         const data = await response.json();
-        descriptionElement.textContent = data.description;
+        descriptionElement.value = data.description; // Corrected this line
     } catch (error) {
         console.error('Error:', error);
-        descriptionElement.textContent = 'Error fetching description. Please try again.';
+        descriptionElement.value = 'Error fetching description. Please try again.'; // Corrected this line
     }
 });
 
@@ -40,7 +40,7 @@ document.getElementById('jewelryType').addEventListener('change', function() {
 document.getElementById("generatePdfButton").addEventListener("click", generatePDF);
 
 async function generatePDF() {
-    const description = descriptionElement.textContent;
+    const description = descriptionElement.value; // Corrected this line
     const ownerName = document.getElementById('ownerName').value;
     const ownerAddress = document.getElementById('ownerAddress').value;
     const appraisalDate = document.getElementById('appraisalDate').value;
@@ -78,11 +78,11 @@ async function generatePDF() {
             const blobURL = URL.createObjectURL(pdfBlob);
             window.open(blobURL, '_blank'); // Opens the PDF in a new tab
         } else {
-            descriptionElement.textContent = 'Error downloading the PDF. Please try again.';
+            descriptionElement.value = 'Error downloading the PDF. Please try again.'; // Corrected this line
         }
     } catch (error) {
         console.error('Error:', error);
-        descriptionElement.textContent = 'Error generating PDF. Please try again.';
+        descriptionElement.value = 'Error generating PDF. Please try again.'; // Corrected this line
     }
 }
 
