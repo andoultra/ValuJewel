@@ -66,34 +66,34 @@ exports.handler = async (event) => {
         page.drawText(`$ ${estimatedValue}`, { x: 400, y: 570, size: 12 });
         
        // Horizontal line after the header
-            page.drawLine({
-                start: { x: 50, y: 755 },
-                end: { x: 560, y: 755 },
-            });
+        page.drawLine({
+            start: { x: 50, y: 755 },
+            end: { x: 560, y: 755 },
+        });
 
-            // Horizontal line after "Property of" and "Date" details
-            page.drawLine({
-                start: { x: 50, y: 700 },
-                end: { x: 560, y: 700 },
-            });
+        // Horizontal line after "Property of" and "Date" details
+        page.drawLine({
+            start: { x: 50, y: 700 },
+            end: { x: 560, y: 700 },
+        });
 
-            // Vertical line separating "Property of" and "Date"
-            page.drawLine({
-                start: { x: 400, y: 730 },
-                end: { x: 400, y: 675 },
-            });
+        // Vertical line separating "Property of" and "Date"
+        page.drawLine({
+            start: { x: 400, y: 730 },
+            end: { x: 400, y: 675 },
+        });
 
-            // Horizontal line after "Article Description" and before the image
-            page.drawLine({
-                start: { x: 50, y: 635 },
-                end: { x: 560, y: 635 },
-            });
+        // Horizontal line after "Article Description" and before the image
+        page.drawLine({
+            start: { x: 50, y: 635 },
+            end: { x: 560, y: 635 },
+        });
 
-            // Vertical line separating "Article Description" and "Estimated Replacement Value"
-            page.drawLine({
-                start: { x: 400, y: 660 },
-                end: { x: 400, y: 645 },
-            });
+        // Vertical line separating "Article Description" and "Estimated Replacement Value"
+        page.drawLine({
+            start: { x: 400, y: 660 },
+            end: { x: 400, y: 645 },
+        });
 
         // Embed images from base64 encoded array
         let yPosition = 320;

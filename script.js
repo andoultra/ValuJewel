@@ -118,3 +118,20 @@ function base64ToBlob(base64, mimeType) {
     const byteArray = new Uint8Array(byteNumbers);
     return new Blob([byteArray], { type: mimeType });
 }
+
+document.getElementById('editDescriptionButton').addEventListener('click', function() {
+    const textarea = document.getElementById('descriptionTextarea');
+    textarea.readOnly = false;
+    textarea.focus();
+    this.style.display = 'none';
+    document.getElementById('saveDescriptionButton').style.display = 'block';
+    document.getElementById('generatePdfButton').disabled = true; // Disable the "Generate PDF" button during editing
+});
+
+document.getElementById('saveDescriptionButton').addEventListener('click', function() {
+    const textarea = document.getElementById('descriptionTextarea');
+    textarea.readOnly = true;
+    this.style.display = 'none';
+    document.getElementById('editDescriptionButton').style.display = 'block';
+    document.getElementById('generatePdfButton').disabled = false; // Re-enable the "Generate PDF" button after editing
+});
