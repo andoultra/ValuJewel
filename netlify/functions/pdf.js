@@ -61,12 +61,12 @@ exports.handler = async (event) => {
         page.drawText(appraisalDate, { x: 445, y: 650, size: 12 });
 
        // Add article description with text wrapping
-        page.drawText('Article Description', { x: 100, y: 585, size: 16 });
-        page.drawText(description, { x: 50, y: 565, size: 10, maxWidth: 400 });
+        page.drawText('Article Description', { x: 140, y: 585, size: 16 });
+        page.drawText(description, { x: 50, y: 565, size: 10, maxWidth: 380 });
 
     // Add estimated replacement value
         //page.drawText('Estimated', { x: 400, y: 600, size: 10 });
-        page.drawText('Estimated Replacement Value', { x: 435, y: 585, size: 10 });
+        page.drawText('Estimated Replacement Value', { x: 433, y: 585, size: 10 });
         page.drawText(`$ ${estimatedValue}`, { x: 480, y: 550, size: 12 });
         
        // Horizontal line after the header
@@ -104,7 +104,7 @@ exports.handler = async (event) => {
        
             // Embed images from base64 encoded array
             let xPosition = 50; // Starting X position for the first image
-            let yPosition = 320; // Starting Y position
+            let yPosition = 280; // Starting Y position
             const gap = 10; // Gap between images, adjust as needed
 
             for (let index = 0; index < images.length; index++) {
