@@ -66,7 +66,7 @@ exports.handler = async (event) => {
 
     // Add estimated replacement value
         //page.drawText('Estimated', { x: 400, y: 600, size: 10 });
-        page.drawText('Estimated Replacement Value', { x: 440, y: 585, size: 10 });
+        page.drawText('Estimated Replacement Value', { x: 435, y: 585, size: 10 });
         page.drawText(`$ ${estimatedValue}`, { x: 480, y: 550, size: 12 });
         
        // Horizontal line after the header
