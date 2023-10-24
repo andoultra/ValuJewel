@@ -39,7 +39,7 @@ exports.handler = async (event) => {
         page.drawImage(logoImage, {
             x: 50,
             y: 725,
-            width: 250,
+            width: 275,
             height: 50
         });
         
@@ -92,7 +92,7 @@ exports.handler = async (event) => {
         // Vertical line separating "Article Description" and "Estimated Replacement Value"
         page.drawLine({
             start: { x: 400, y: 660 },
-            end: { x: 400, y: 645 },
+            end: { x: 400, y: 200 },
         });
 
         // Embed images from base64 encoded array
