@@ -121,7 +121,7 @@ exports.handler = async (event) => {
 
                 // We'll adjust the image layout for up to 4 images
                 // After the 2nd image, we'll move to the next row
-                if (index === 1 || index === 3) {
+                if (index === 1 || index === 4) {
                     yPosition -= 160; // Adjust to the desired y-level for the next row
                     xPosition = 50;   // Reset x position to the starting position
                 } else {
