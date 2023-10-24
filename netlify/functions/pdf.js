@@ -62,7 +62,7 @@ exports.handler = async (event) => {
 
        // Add article description with text wrapping
         page.drawText('Article Description', { x: 50, y: 585, size: 16 });
-        page.drawText(description, { x: 50, y: 565, size: 12, maxWidth: 500 });
+        page.drawText(description, { x: 50, y: 565, size: 12, maxWidth: 400 });
 
     // Add estimated replacement value
         page.drawText('Estimated', { x: 400, y: 600, size: 10 });
@@ -98,8 +98,8 @@ exports.handler = async (event) => {
         });
         // Vertical line internal right
         page.drawLine({
-            start: { x: 400, y: 720 },
-            end: { x: 400, y: 200 },
+            start: { x: 380, y: 720 },
+            end: { x: 380, y: 200 },
         });
        
 
