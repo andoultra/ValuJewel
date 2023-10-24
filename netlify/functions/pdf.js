@@ -77,14 +77,14 @@ exports.handler = async (event) => {
 
         // Horizontal line Top Description
         page.drawLine({
-            start: { x: 40, y: 585 },
-            end: { x: 560, y: 585 },
+            start: { x: 40, y: 600 },
+            end: { x: 560, y: 600 },
         });
         
         // Horizontal line bottom Descirption
         page.drawLine({
-            start: { x: 50, y: 550 },
-            end: { x: 560, y: 550 },
+            start: { x: 50, y: 580 },
+            end: { x: 560, y: 580 },
         });
         // Vertical line left hand side
         page.drawLine({
