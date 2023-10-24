@@ -66,8 +66,8 @@ exports.handler = async (event) => {
 
     // Add estimated replacement value
         //page.drawText('Estimated', { x: 400, y: 600, size: 10 });
-        page.drawText('Estimated Replacement Value', { x: 450, y: 585, size: 8 });
-        page.drawText(`$ ${estimatedValue}`, { x: 450, y: 570, size: 12 });
+        page.drawText('Estimated Replacement Value', { x: 440, y: 585, size: 9 });
+        page.drawText(`$ ${estimatedValue}`, { x: 460, y: 570, size: 12 });
         
        // Horizontal line after the header
         page.drawLine({
@@ -79,6 +79,7 @@ exports.handler = async (event) => {
         page.drawLine({
             start: { x: 40, y: 600 },
             end: { x: 560, y: 600 },
+            end: { x: 560, y: 600 },
         });
         
         // Horizontal line bottom Descirption
@@ -89,17 +90,17 @@ exports.handler = async (event) => {
         // Vertical line left hand side
         page.drawLine({
             start: { x: 40, y: 720 },
-            end: { x: 40, y: 200 },
+            end: { x: 40, y: 150 },
         });
         // Vertical line right hand side
         page.drawLine({
             start: { x: 560, y: 720 },
-            end: { x: 560, y: 200 },
+            end: { x: 560, y: 150 },
         });
         // Vertical line internal right
         page.drawLine({
-            start: { x: 410, y: 600 },
-            end: { x: 410, y: 200 },
+            start: { x: 430, y: 600 },
+            end: { x: 430, y: 150 },
         });
        
 
