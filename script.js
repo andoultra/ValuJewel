@@ -46,7 +46,7 @@ async function generatePDF() {
     const appraisalDate = document.getElementById('appraisalDate').value;
     const estimatedValue = document.getElementById('estimatedValue').value;
     const images = await getBase64Images();
-    let appraiserName = document.getElementById('appraiserName').value;
+    const appraiserName = document.getElementById('appraiserName').value;
     const logoUrl = 'https://sp-ao.shortpixel.ai/client/to_webp,q_glossy,ret_img,w_811,h_124/https://www.davidgardnersjewelers.com/wp-content/themes/ttg/src/dist/img/logo.png'; 
     const requestData = {
         description,
