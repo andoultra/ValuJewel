@@ -47,9 +47,9 @@ exports.handler = async (event) => {
         page.drawText('Appraisal', { x: 400, y: 730, size: 18 });
         
 
-        page.drawText('911 University Drive East', { x: 50, y: 680, size: 12 });
-        page.drawText('College Station, TX 77840', { x: 50, y: 665, size: 12 });
-        page.drawText('(979) 268-0800', { x: 50, y: 650, size: 12 });
+        page.drawText('911 University Drive East', { x: 50, y: 700, size: 10});
+        page.drawText('College Station, TX 77840', { x: 50, y: 685, size: 10 });
+        page.drawText('(979) 268-0800', { x: 50, y: 670, size: 10 });
 
         // Add the 'Property of' section
         page.drawText('Property of', { x: 400, y: 720, size: 14 });
@@ -69,14 +69,14 @@ exports.handler = async (event) => {
         
        // Horizontal line after the header
         page.drawLine({
-            start: { x: 50, y: 725 },
-            end: { x: 560, y: 725 },
+            start: { x: 40, y: 720 },
+            end: { x: 560, y: 720 },
         });
 
         // Horizontal line after "Property of" and "Date" details
         page.drawLine({
-            start: { x: 50, y: 700 },
-            end: { x: 560, y: 700 },
+            start: { x: 40, y: 200 },
+            end: { x: 560, y: 200 },
         });
 
         // Vertical line separating "Property of" and "Date"
