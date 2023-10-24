@@ -26,7 +26,7 @@ exports.handler = async (event) => {
             appraisalDate,
             estimatedValue,
             images,
-            logoUrl
+            logoUrl,
             appraiserName
         } = data;
 

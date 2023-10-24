@@ -56,7 +56,7 @@ async function generatePDF() {
         estimatedValue,
         images,
         logoUrl,
-        appraiserName,
+        appraiserName
     };
 
     const requestURL = "https://willowy-pie-2fe033.netlify.app/.netlify/functions/pdf";
