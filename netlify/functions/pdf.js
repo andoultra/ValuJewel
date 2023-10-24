@@ -67,8 +67,8 @@ exports.handler = async (event) => {
         
        // Horizontal line after the header
         page.drawLine({
-            start: { x: 50, y: 650 },
-            end: { x: 560, y: 755 },
+            start: { x: 50, y: 725 },
+            end: { x: 560, y: 725 },
         });
 
         // Horizontal line after "Property of" and "Date" details
