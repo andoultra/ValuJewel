@@ -27,6 +27,7 @@ exports.handler = async (event) => {
             estimatedValue,
             images,
             logoUrl
+            appraiserName
         } = data;
 
         // Create a new PDF document
@@ -127,7 +128,15 @@ exports.handler = async (event) => {
                 }
             }
 
+
+        // Draw the appraiser's name and credentials at the bottom of the PDF
+        page.drawText(`Appraiser`, { x: 50, y: 90, size: 12 });
+        page.drawText(appraiserName, { x: 50, y: 100, size: 12 });
+
         // Save the PDF
+        
+
+
         const pdfBytes = await pdfDoc.save();
         const base64PDF = Buffer.from(pdfBytes).toString('base64');
 
