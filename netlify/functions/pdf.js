@@ -47,9 +47,9 @@ exports.handler = async (event) => {
         page.drawText('Appraisal', { x: 450, y: 730, size: 18 });
         
 
-        page.drawText('911 University Drive East', { x: 50, y: 700, size: 10});
-        page.drawText('College Station, TX 77840', { x: 50, y: 685, size: 10 });
-        page.drawText('(979) 268-0800', { x: 50, y: 670, size: 10 });
+        page.drawText('911 University Drive East', { x: 100, y: 700, size: 10});
+        page.drawText('College Station, TX 77840', { x: 100, y: 685, size: 10 });
+        page.drawText('(979) 268-0800', { x: 125, y: 670, size: 10 });
         
         page.drawText('The following estimated replacement values are based upon market value at the time of the apprasial. Mounted gemstones are graded only to the extent that mounting permits examination. We assume no lability with respect to any action that may be taken on the basis of this apprasial.', { x: 50, y: 650, size: 10, maxWidth: 250, lineHeight:10})
         
@@ -83,8 +83,8 @@ exports.handler = async (event) => {
 
         // Vertical line separating "Property of" and "Date"
         page.drawLine({
-            start: { x: 400, y: 730 },
-            end: { x: 400, y: 675 },
+            start: { x: 40, y: 730 },
+            end: { x: 40, y: 200 },
         });
 
         // Horizontal line after "Article Description" and before the image
@@ -95,8 +95,8 @@ exports.handler = async (event) => {
 
         // Vertical line separating "Article Description" and "Estimated Replacement Value"
         page.drawLine({
-            start: { x: 400, y: 660 },
-            end: { x: 400, y: 200 },
+            start: { x: 720, y: 660 },
+            end: { x: 720, y: 200 },
         });
 
                     let xPosition = 50; // Starting X position for the first image
