@@ -38,8 +38,8 @@ exports.handler = async (event) => {
         const logoImage = await pdfDoc.embedPng(logoImageBytes);
         page.drawImage(logoImage, {
             x: 50,
-            y: 750,
-            width: 200,
+            y: 725,
+            width: 250,
             height: 50
         });
         
