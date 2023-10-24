@@ -43,11 +43,13 @@ exports.handler = async (event) => {
             height: 50
         });
         
-        page.drawText('DAVID GARDNER’S', { x: 200, y: 720, size: 18 });
-        page.drawText('JEWELERS & GEMOLOGISTS', { x: 200, y: 700, size: 16 });
-        page.drawText('911 University Drive East', { x: 200, y: 680, size: 12 });
-        page.drawText('College Station, TX 77840', { x: 200, y: 665, size: 12 });
-        page.drawText('(979) 268-0800', { x: 200, y: 650, size: 12 });
+        page.drawText('Jewelry', { x: 400, y: 750, size: 18 });
+        page.drawText('Appraisal', { x: 400, y: 730, size: 18 });
+        
+
+        page.drawText('911 University Drive East', { x: 50, y: 680, size: 12 });
+        page.drawText('College Station, TX 77840', { x: 50, y: 665, size: 12 });
+        page.drawText('(979) 268-0800', { x: 50, y: 650, size: 12 });
 
         // Add the 'Property of' section
         page.drawText('Property of', { x: 400, y: 720, size: 14 });
