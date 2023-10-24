@@ -61,8 +61,8 @@ exports.handler = async (event) => {
         page.drawText(appraisalDate, { x: 445, y: 650, size: 12 });
 
        // Add article description with text wrapping
-        page.drawText('Article Description', { x: 50, y: 580, size: 16 });
-        page.drawText(description, { x: 50, y: 560, size: 12, maxWidth: 500 });
+        page.drawText('Article Description', { x: 50, y: 585, size: 16 });
+        page.drawText(description, { x: 50, y: 565, size: 12, maxWidth: 500 });
 
     // Add estimated replacement value
         page.drawText('Estimated', { x: 400, y: 600, size: 12 });
@@ -83,7 +83,7 @@ exports.handler = async (event) => {
         
         // Horizontal line bottom Descirption
         page.drawLine({
-            start: { x: 50, y: 580 },
+            start: { x: 40, y: 580 },
             end: { x: 560, y: 580 },
         });
         // Vertical line left hand side
