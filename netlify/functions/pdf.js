@@ -51,7 +51,7 @@ exports.handler = async (event) => {
         page.drawText('College Station, TX 77840', { x: 100, y: 685, size: 10 });
         page.drawText('(979) 268-0800', { x: 125, y: 670, size: 10 });
         
-        page.drawText('The following estimated replacement values are based upon market value at the time of the apprasial. Mounted gemstones are graded only to the extent that mounting permits examination. We assume no lability with respect to any action that may be taken on the basis of this apprasial.', { x: 50, y: 650, size: 10, maxWidth: 250, lineHeight:10})
+        page.drawText('The following estimated replacement values are based upon market value at the time of the apprasial. Mounted gemstones are graded only to the extent that mounting permits examination. We assume no lability with respect to any action that may be taken on the basis of this apprasial.', { x: 50, y: 655, size: 10, maxWidth: 250, lineHeight:10})
         
         // Add the 'Property of' section
         page.drawText('Property of', { x: 400, y: 720, size: 14 });
