@@ -75,38 +75,34 @@ exports.handler = async (event) => {
             end: { x: 560, y: 720 },
         });
 
-        // Horizontal line after "Property of" and "Date" details
+        // Horizontal line Top Description
         page.drawLine({
-            start: { x: 40, y: 200 },
-            end: { x: 560, y: 200 },
+            start: { x: 40, y: 600 },
+            end: { x: 560, y: 600 },
         });
-
+        
+        // Horizontal line bottom Descirption
+        page.drawLine({
+            start: { x: 50, y: 550 },
+            end: { x: 560, y: 550 },
+        });
         // Vertical line left hand side
         page.drawLine({
-            start: { x: 40, y: 730 },
+            start: { x: 40, y: 720 },
             end: { x: 40, y: 200 },
         });
         // Vertical line right hand side
         page.drawLine({
-            start: { x: 560, y: 730 },
+            start: { x: 560, y: 720 },
             end: { x: 560, y: 200 },
         });
-        // Vertical line separating "Property of" and "Date"
+        // Vertical line internal right
         page.drawLine({
-            start: { x: 500, y: 730 },
+            start: { x: 500, y: 720 },
             end: { x: 500, y: 200 },
         });
-        // Horizontal line after "Article Description" and before the image
-        page.drawLine({
-            start: { x: 50, y: 635 },
-            end: { x: 560, y: 635 },
-        });
+       
 
-        // Vertical line separating "Article Description" and "Estimated Replacement Value"
-        page.drawLine({
-            start: { x: 720, y: 660 },
-            end: { x: 720, y: 200 },
-        });
 
                     let xPosition = 50; // Starting X position for the first image
             const yPosition = 320; // Y position will be constant for all images in this case
