@@ -118,21 +118,25 @@ exports.handler = async (event) => {
                     width: 150,
                     height: 150
                 });
-                
-                // If it's the second image, adjust yPosition for the next row and reset xPosition
-                if (index === 1) {
+
+                // We'll adjust the image layout for up to 4 images
+                // After the 2nd image, we'll move to the next row
+                if (index === 1 || index === 3) {
                     yPosition -= 160; // Adjust to the desired y-level for the next row
-                    xPosition = 50; // Reset x position to the starting position
+                    xPosition = 50;   // Reset x position to the starting position
                 } else {
                     xPosition += 150 + gap; // Move to the right for the next image (width of the image + gap)
                 }
             }
 
-
         // Draw the appraiser's name and credentials at the bottom of the PDF
-        page.drawText(`Appraiser`, { x: 50, y: 90, size: 12 });
-        page.drawText(appraiserName, { x: 50, y: 100, size: 12 });
-
+        page.drawText(`Appraiser`, { x: 50, y: 50, size: 12 });
+        page.drawText(appraiserName, { x: 50, y: 65, size: 12 });
+        // Horizontal line Appraiser
+        page.drawLine({
+            start: { x: 50, y: 60 },
+            end: { x: 90, y: 60 },
+        });
         // Save the PDF
         
 
