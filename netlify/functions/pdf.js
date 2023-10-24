@@ -54,19 +54,19 @@ exports.handler = async (event) => {
         page.drawText('The following estimated replacement values are based upon market value at the time of the apprasial. Mounted gemstones are graded only to the extent that mounting permits examination. We assume no lability with respect to any action that may be taken on the basis of this apprasial.', { x: 50, y: 655, size: 10, maxWidth: 250, lineHeight:10})
         
         // Add the 'Property of' section
-        page.drawText('Property of', { x: 400, y: 720, size: 14 });
-        page.drawText(ownerName, { x: 400, y: 700, size: 12 });
-        page.drawText(ownerAddress, { x: 400, y: 685, size: 12 });
+        page.drawText('Property of', { x: 400, y: 700, size: 14 });
+        page.drawText(ownerName, { x: 400, y: 685, size: 12 });
+        page.drawText(ownerAddress, { x: 400, y: 670, size: 12 });
         page.drawText('Date', { x: 400, y: 650, size: 12 });
         page.drawText(appraisalDate, { x: 445, y: 650, size: 12 });
 
        // Add article description with text wrapping
-        page.drawText('Article Description', { x: 50, y: 585, size: 16 });
-        page.drawText(description, { x: 50, y: 565, size: 12, maxWidth: 400 });
+        page.drawText('Article Description', { x: 100, y: 585, size: 16 });
+        page.drawText(description, { x: 50, y: 565, size: 10, maxWidth: 400 });
 
     // Add estimated replacement value
-        page.drawText('Estimated', { x: 400, y: 600, size: 10 });
-        page.drawText('Replacement Value', { x: 400, y: 585, size: 10 });
+        //page.drawText('Estimated', { x: 400, y: 600, size: 10 });
+        page.drawText('Estimated Replacement Value', { x: 400, y: 585, size: 8 });
         page.drawText(`$ ${estimatedValue}`, { x: 400, y: 570, size: 12 });
         
        // Horizontal line after the header
@@ -98,8 +98,8 @@ exports.handler = async (event) => {
         });
         // Vertical line internal right
         page.drawLine({
-            start: { x: 380, y: 720 },
-            end: { x: 380, y: 200 },
+            start: { x: 390, y: 720 },
+            end: { x: 390, y: 200 },
         });
        
 
