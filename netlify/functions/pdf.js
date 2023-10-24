@@ -81,12 +81,21 @@ exports.handler = async (event) => {
             end: { x: 560, y: 200 },
         });
 
-        // Vertical line separating "Property of" and "Date"
+        // Vertical line left hand side
         page.drawLine({
             start: { x: 40, y: 730 },
             end: { x: 40, y: 200 },
         });
-
+        // Vertical line right hand side
+        page.drawLine({
+            start: { x: 560, y: 730 },
+            end: { x: 560, y: 200 },
+        });
+        // Vertical line separating "Property of" and "Date"
+        page.drawLine({
+            start: { x: 500, y: 730 },
+            end: { x: 500, y: 200 },
+        });
         // Horizontal line after "Article Description" and before the image
         page.drawLine({
             start: { x: 50, y: 635 },
