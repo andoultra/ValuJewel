@@ -94,8 +94,8 @@ exports.handler = async (event) => {
         });
         // Vertical line right hand side
         page.drawLine({
-            start: { x: 560, y: 720 },
-            end: { x: 560, y: 150 },
+            start: { x: 572, y: 720 },
+            end: { x: 572, y: 150 },
         });
         // Vertical line internal right
         page.drawLine({
