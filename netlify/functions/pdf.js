@@ -99,19 +99,21 @@ exports.handler = async (event) => {
             end: { x: 400, y: 200 },
         });
 
-        // Embed images from base64 encoded array
-        let yPosition = 320;
-        for (let base64Image of images) {
-            const imageBytes = Uint8Array.from(atob(base64Image), c => c.charCodeAt(0));
-            const image = await pdfDoc.embedPng(imageBytes);
-            page.drawImage(image, {
-                x: 50,
-                y: yPosition,
-                width: 150,
-                height: 150
-            });
-            yPosition -= 160;
-        }
+                    let xPosition = 50; // Starting X position for the first image
+            const yPosition = 320; // Y position will be constant for all images in this case
+            const gap = 10; // Gap between images, adjust as needed
+
+            for (let base64Image of images) {
+                const imageBytes = Uint8Array.from(atob(base64Image), c => c.charCodeAt(0));
+                const image = await pdfDoc.embedPng(imageBytes);
+                page.drawImage(image, {
+                    x: xPosition,
+                    y: yPosition,
+                    width: 150,
+                    height: 150
+                });
+                xPosition += 150 + gap; // Move to the right for the next image (width of the image + gap)
+}
 
         // Save the PDF
         const pdfBytes = await pdfDoc.save();
