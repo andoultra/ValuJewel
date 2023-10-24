@@ -137,6 +137,22 @@ exports.handler = async (event) => {
             start: { x: 50, y: 60 },
             end: { x: 130, y: 60 },
         });
+        
+
+        // Signature
+        page.drawText(`Signature`, { x: 400, y: 50, size: 12 });
+        // Horizontal line Appraiser
+        page.drawLine({
+            start: { x: 350, y: 60 },
+            end: { x: 450, y: 60 },
+        });
+
+
+
+
+
+
+
         // Save the PDF
         
 
