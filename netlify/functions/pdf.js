@@ -66,8 +66,8 @@ exports.handler = async (event) => {
 
     // Add estimated replacement value
         //page.drawText('Estimated', { x: 400, y: 600, size: 10 });
-        page.drawText('Estimated Replacement Value', { x: 400, y: 585, size: 8 });
-        page.drawText(`$ ${estimatedValue}`, { x: 400, y: 570, size: 12 });
+        page.drawText('Estimated Replacement Value', { x: 450, y: 585, size: 8 });
+        page.drawText(`$ ${estimatedValue}`, { x: 450, y: 570, size: 12 });
         
        // Horizontal line after the header
         page.drawLine({
@@ -98,8 +98,8 @@ exports.handler = async (event) => {
         });
         // Vertical line internal right
         page.drawLine({
-            start: { x: 390, y: 720 },
-            end: { x: 390, y: 200 },
+            start: { x: 410, y: 600 },
+            end: { x: 410, y: 200 },
         });
        
 
