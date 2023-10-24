@@ -135,7 +135,7 @@ exports.handler = async (event) => {
         // Horizontal line Appraiser
         page.drawLine({
             start: { x: 50, y: 60 },
-            end: { x: 90, y: 60 },
+            end: { x: 130, y: 60 },
         });
         // Save the PDF
         

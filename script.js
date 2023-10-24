@@ -91,7 +91,7 @@ async function generatePDF() {
 async function getBase64Images() {
     const images = [];
 
-    for (let i = 1; i <= 3; i++) {
+    for (let i = 1; i <= 4; i++) {
         const imageInput = document.getElementById(`image${i}`);
         if (imageInput && imageInput.files.length > 0) {
             const base64Image = await toBase64(imageInput.files[0]);
