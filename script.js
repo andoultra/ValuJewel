@@ -41,14 +41,14 @@ document.getElementById('jewelryType').addEventListener('change', function() {
 });
 
 document.getElementById('ringType').addEventListener('change', function() {
-    const engagementOptionsDiv = document.getElementById('engagementOptions');
-
+    const engagementVariablesDiv = document.getElementById('engagementVariables');
     if (this.value === 'engagement_ring') {
-        engagementOptionsDiv.style.display = 'block';
+        engagementVariablesDiv.style.display = 'block';
     } else {
-        engagementOptionsDiv.style.display = 'none';
+        engagementVariablesDiv.style.display = 'none';
     }
 });
+
 
 
 
