@@ -28,26 +28,15 @@ jewelryForm.addEventListener('submit', async (event) => {
     }
 });
 
-document.getElementById('jewelryType').addEventListener('change', function() {
-    const ringOptionsDiv = document.getElementById('ringOptions');
-    const engagementOptionsDiv = document.getElementById('engagementOptions');
-
-    if (this.value === 'ring') {
-        ringOptionsDiv.style.display = 'block';
-    } else {
-        ringOptionsDiv.style.display = 'none';
-        engagementOptionsDiv.style.display = 'none';  // hide the engagement options if the jewelry type is not a ring
-    }
-});
-
 document.getElementById('ringType').addEventListener('change', function() {
-    const engagementVariablesDiv = document.getElementById('engagementVariables');
+    const engagementOptionsDiv = document.getElementById('engagementOptions');
     if (this.value === 'engagement_ring') {
-        engagementVariablesDiv.style.display = 'block';
+        engagementOptionsDiv.style.display = 'block';
     } else {
-        engagementVariablesDiv.style.display = 'none';
+        engagementOptionsDiv.style.display = 'none';
     }
 });
+
 
 
 
