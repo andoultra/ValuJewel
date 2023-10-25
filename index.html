@@ -81,6 +81,14 @@
             margin-bottom: 10px;
             border-radius: 4px;
             background-color: #f9f9f9;
+          }
+        
+      #engagementOptions {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    background-color: #f9f9f9;
         }
     </style>
 </head>
@@ -120,14 +128,33 @@
         </div>
          
          <div id="engagementOptions" style="display:none;">
-            <label for="engagementType">Engagement Ring Option:</label>
-            <select id="engagementType">
-                <option value="">Select Engagement Ring Option</option>
-                <option value="option1">Option 1</option>
-                <!-- ... other engagement-specific options ... -->
-            </select>
-        </div>
+    <label for="settingType">Setting Type:</label>
+    <select id="settingType">
+        <option value="">Select Setting Type</option>
+        <option value="solitaire">Solitaire</option>
+        <option value="halo">Halo</option>
+        <option value="pave">Pavé</option>
+        <!-- ... other setting types ... -->
+    </select>
 
+    <label for="diamondShape">Diamond Shape:</label>
+    <select id="diamondShape">
+        <option value="">Select Diamond Shape</option>
+        <option value="round">Round</option>
+        <option value="princess">Princess</option>
+        <option value="oval">Oval</option>
+        <!-- ... other diamond shapes ... -->
+    </select>
+
+    <label for="bandStyle">Band Style:</label>
+    <select id="bandStyle">
+        <option value="">Select Band Style</option>
+        <option value="plain">Plain</option>
+        <option value="twisted">Twisted</option>
+        <option value="split_shank">Split Shank</option>
+        <!-- ... other band styles ... -->
+    </select>
+</div>
         
         <label for="jewelryMaterial">Material:</label>
         <input type="text" id="jewelryMaterial" name="jewelryMaterial" required>
