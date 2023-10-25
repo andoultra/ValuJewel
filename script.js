@@ -30,29 +30,22 @@ jewelryForm.addEventListener('submit', async (event) => {
 
 document.getElementById('jewelryType').addEventListener('change', function() {
     const ringOptionsDiv = document.getElementById('ringOptions');
-    const engagementOptionsDiv = document.getElementById('engagementOptions');
-
     if (this.value === 'ring') {
         ringOptionsDiv.style.display = 'block';
     } else {
         ringOptionsDiv.style.display = 'none';
-        engagementOptionsDiv.style.display = 'none';  // hide the engagement options if the jewelry type is not a ring
     }
 });
 
 document.getElementById('ringType').addEventListener('change', function() {
     const engagementOptionsDiv = document.getElementById('engagementOptions');
-
+    
     if (this.value === 'engagement_ring') {
         engagementOptionsDiv.style.display = 'block';
     } else {
         engagementOptionsDiv.style.display = 'none';
     }
 });
-
-
-
-
 
 document.getElementById("generatePdfButton").addEventListener("click", generatePDF);
 
