@@ -135,21 +135,21 @@ exports.handler = async (event) => {
        
 
        // Draw the appraiser's name and credentials at the bottom of the PDF
-        page.drawText(`Appraiser`, { x: 50, y: 50, size: 12 });
-        page.drawText(appraiserName, { x: 50, y: 65, size: 12 });
+        page.drawText(`Appraiser`, { x: 50, y: 40, size: 12 });
+        page.drawText(appraiserName, { x: 50, y: 55, size: 12 });
         // Horizontal line Appraiser
         page.drawLine({
-            start: { x: 50, y: 60 },
-            end: { x: 130, y: 60 },
+            start: { x: 50, y: 50 },
+            end: { x: 200, y: 50 },
         });
         
 
         // Signature
-        page.drawText(`Signature`, { x: 400, y: 50, size: 12 });
+        page.drawText(`Signature`, { x: 400, y: 40, size: 12 });
         // Horizontal line Appraiser
         page.drawLine({
-            start: { x: 350, y: 60 },
-            end: { x: 450, y: 60 },
+            start: { x: 350, y: 50 },
+            end: { x: 550, y: 50 },
         });
 
 
