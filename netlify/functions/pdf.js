@@ -90,22 +90,22 @@ exports.handler = async (event) => {
         // Vertical line left hand side
         page.drawLine({
             start: { x: 40, y: 720 },
-            end: { x: 40, y: 150 },
+            end: { x: 40, y: 100 },
         });
         // Vertical line right hand side
         page.drawLine({
             start: { x: 572, y: 720 },
-            end: { x: 572, y: 150 },
+            end: { x: 572, y: 100 },
         });
         // Vertical line internal right
         page.drawLine({
             start: { x: 430, y: 600 },
-            end: { x: 430, y: 150 },
+            end: { x: 430, y: 100 },
         });
        
 // Embed images from base64 encoded array
 let xPosition = 50; // Starting X position for the first image
-let yPosition = 320; // Starting Y position
+let yPosition = 300; // Starting Y position
 const gap = 10; // Gap between images, adjust as needed
 
 for (let index = 0; index < images.length; index++) {
