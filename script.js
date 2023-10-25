@@ -37,6 +37,16 @@ document.getElementById('jewelryType').addEventListener('change', function() {
     }
 });
 
+document.getElementById('ringType').addEventListener('change', function() {
+    const engagementOptionsDiv = document.getElementById('engagementOptions');
+    
+    if (this.value === 'engagement') {
+        engagementOptionsDiv.style.display = 'block';
+    } else {
+        engagementOptionsDiv.style.display = 'none';
+    }
+});
+
 document.getElementById("generatePdfButton").addEventListener("click", generatePDF);
 
 async function generatePDF() {
