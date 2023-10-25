@@ -52,7 +52,6 @@ document.getElementById('ringType').addEventListener('change', function() {
 
 
 
-
 document.getElementById("generatePdfButton").addEventListener("click", generatePDF);
 
 async function generatePDF() {
