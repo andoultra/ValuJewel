@@ -117,12 +117,17 @@
                 <option value="engagement_ring">Engagement Ring</option>
             </select>
           <!-- ... other ring-specific fields ... -->
-
-          <select id="engagementOptions" style="display:none;">
-          <option value="">Select Engagement Ring Option</option>
-          <option value="option1">Option 1</option>
-        
         </div>
+         
+         <div id="engagementOptions" style="display:none;">
+            <label for="engagementType">Engagement Ring Option:</label>
+            <select id="engagementType">
+                <option value="">Select Engagement Ring Option</option>
+                <option value="option1">Option 1</option>
+                <!-- ... other engagement-specific options ... -->
+            </select>
+        </div>
+
         
         <label for="jewelryMaterial">Material:</label>
         <input type="text" id="jewelryMaterial" name="jewelryMaterial" required>
