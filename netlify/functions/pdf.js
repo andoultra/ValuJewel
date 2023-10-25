@@ -103,30 +103,31 @@ exports.handler = async (event) => {
             end: { x: 430, y: 150 },
         });
        
-           let xPosition = 50; // Starting X position for the first image
-        let yPosition = 280; // Starting Y position
-        const gap = 10; // Gap between images, adjust as needed
+// Embed images from base64 encoded array
+let xPosition = 50; // Starting X position for the first image
+let yPosition = 280; // Starting Y position for the top row
+const gap = 10; // Gap between images, adjust as needed
+const centerGap = 155; // Distance to center the third image
 
-        for (let index = 0; index < images.length; index++) {
-            const base64Image = images[index];
-            const imageBytes = Uint8Array.from(atob(base64Image), c => c.charCodeAt(0));
-            const image = await pdfDoc.embedPng(imageBytes);
-            page.drawImage(image, {
-                x: xPosition,
-                y: yPosition,
-                width: 150,
-                height: 150
-            });
+for (let index = 0; index < images.length; index++) {
+    const base64Image = images[index];
+    const imageBytes = Uint8Array.from(atob(base64Image), c => c.charCodeAt(0));
+    const image = await pdfDoc.embedPng(imageBytes);
+    page.drawImage(image, {
+        x: xPosition,
+        y: yPosition,
+        width: 150,
+        height: 150
+    });
 
-            // We'll adjust the image layout for up to 4 images
-            // After the 2nd image, we'll move to the next row
-            if (index === 1) {
-                yPosition -= 160; // Adjust to the desired y-level for the next row
-                xPosition = 50;   // Reset x position to the starting position
-            } else {
-                xPosition += 150 + gap; // Move to the right for the next image (width of the image + gap)
-            }
-        }
+    // Adjust positions based on the number of images
+    if (index === 0) {
+        xPosition += 150 + gap; // Move to the right for the second image (width of the image + gap)
+    } else if (index === 1) {
+        yPosition -= 160; // Move down for the third image
+        xPosition = 50 + centerGap; // Center the third image
+    }
+}
             // State tax and GIA
         page.drawText(`Listed value includes current local sales tax of 8.25%`, { x: 50, y: 100, size: 12 });
         page.drawText(`Grades given in Gemological Institute of America terms`, { x: 50, y: 90, size: 12 });
