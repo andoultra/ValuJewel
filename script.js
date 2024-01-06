@@ -10,7 +10,7 @@ jewelryForm.addEventListener('submit', async (event) => {
     const gender = encodeURIComponent(document.getElementById('gender').value);
     const ringSize = encodeURIComponent(document.getElementById('ringSize').value);
 
-    const requestURL = `https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description?type=${jewelryType}&material=${jewelryMaterial}&giaCertification=${giaCertification}&ringType=${ringType}&gender=${gender}&ringSize=${ringSize}`;
+    const requestURL = `https://willowy-pie-2fe033.netlify.app/.netlify/functions/generate-description?type=${jewelryType}&material=${jewelryMaterial}&ringType=${ringType}&gender=${gender}&ringSize=${ringSize}`;
 
     try {
         const response = await fetch(requestURL);
