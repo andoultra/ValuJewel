@@ -80,16 +80,22 @@
             color: #2c3e50;
         }
 
-        #ringOptions, #engagementOptions {
-            width: 80%;  /* set the width explicitly */
+        #ringOptions {
+            width: 80%;
             border: 1px solid #ddd;
             padding: 10px;
             margin-top: 10px;
             margin-bottom: 10px;
             border-radius: 4px;
             background-color: #f9f9f9;
-        }
-            
+          }
+        
+        #engagementOptions {
+      width: 80%;
+      margin: 10px 0;
+      background-color: #f9f9f9;
+          }
+    
     </style>
 </head>
 
@@ -135,14 +141,8 @@
               <!-- ... other setting types ... -->
           </select>
 
-          <label for="diamondShape">Diamond Shape:</label>
-          <select id="diamondShape">
-              <option value="">Select Diamond Shape</option>
-              <option value="round">Round</option>
-              <option value="princess">Princess</option>
-              <option value="oval">Oval</option>
-              <!-- ... other diamond shapes ... -->
-          </select>
+          <label for="designer">Designer:</label>
+          <input type="text" id="designer" name="designer">
 
           <label for="bandStyle">Band Style:</label>
           <select id="bandStyle">
@@ -159,6 +159,10 @@
         <label for="jewelryMaterial">Material:</label>
         <input type="text" id="jewelryMaterial" name="jewelryMaterial" required>
         
+        <label for="features">Describe any unique features:</label>
+        <input type="text" id="features" name="features">
+       
+
         <!--<label for="Cut">Cut:</label>
         <input type="text" id="Cut" name="Cut" required>-->
         
@@ -176,8 +180,6 @@
             <option value="Stephanie Calhoun C.S.A., AGS. A.J.P., GIA.">Stephanie Calhoun C.S.A., AGS. A.J.P., GIA.</option>
         </select>
     </form>
-    
-
        <div id="descriptionBox" style="max-width: 600px; margin: 20px auto;">
         <textarea id="descriptionTextarea" readonly style="width: 100%; height: 150px; margin-top: 20px; border: 1px solid #ddd; border-radius: 4px;">Description will appear here.</textarea>
         <button id="editDescriptionButton">Edit Description</button>

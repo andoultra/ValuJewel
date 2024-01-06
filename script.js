@@ -6,7 +6,6 @@ jewelryForm.addEventListener('submit', async (event) => {
 
     const jewelryType = encodeURIComponent(document.getElementById('jewelryType').value);
     const jewelryMaterial = encodeURIComponent(document.getElementById('jewelryMaterial').value);
-    const giaCertification = encodeURIComponent(document.getElementById('giaCertification').value);
     const ringType = encodeURIComponent(document.getElementById('ringType').value);
     const gender = encodeURIComponent(document.getElementById('gender').value);
     const ringSize = encodeURIComponent(document.getElementById('ringSize').value);
