@@ -38,9 +38,9 @@ async function describeJewelry(jewelryType, material, cut, ringSize, gender, rin
 
 exports.handler = async (event) => {
     try {
-        const { type, material, cut, ringSize, gender, ringType } = event.queryStringParameters || {};
+        const { type, material, cut, ringSize, gender, ringType, features } = event.queryStringParameters || {};
 
-        const description = await describeJewelry(type, material, cut, ringSize, gender, ringType);
+        const description = await describeJewelry(type, material, cut, ringSize, gender, ringType, features);
 
         const headers = {
             'Access-Control-Allow-Origin': 'https://andoultra.github.io',
